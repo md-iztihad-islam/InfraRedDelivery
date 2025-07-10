@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.infrareddeliverysystem.controllers.adminLoginController">
+   <children>
+      <TextField fx:id="adminLoginUserName" layoutX="199.0" layoutY="103.0" promptText="Username" />
+      <TextField fx:id="adminLoginPassword" layoutX="200.0" layoutY="188.0" promptText="Password" />
+      <Button layoutX="249.0" layoutY="244.0" mnemonicParsing="false" onAction="#adminLogin" text="Login" />
+   </children>
+</AnchorPane>
