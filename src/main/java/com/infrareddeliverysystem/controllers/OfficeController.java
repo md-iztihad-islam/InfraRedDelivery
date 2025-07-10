@@ -34,4 +34,24 @@ public class OfficeController {
         stage.setTitle("Admin Registration Page");
         stage.show();
     }
+
+    public void switchToDeliverManRegister(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/registerDeliveryMan.fxml"));
+        root = fxmlLoader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Admin Registration Page");
+        stage.show();
+    }
+
+    public void switchToTakeParcel(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/takeParcel.fxml"));
+        root = fxmlLoader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Parcel Registration Page");
+        stage.show();
+    }
 }

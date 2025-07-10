@@ -44,10 +44,6 @@ public class RegisterAdminController {
         String password = adminPassword.getText();
         String username = adminUsername.getText();
 
-        System.out.println("Name: " + name);
-        System.out.println("Password: " + password);
-        System.out.println("Username: " + username);
-
         Admin admin = new Admin(name, password, username);
         Document adminDoc = admin.toDocument();
 

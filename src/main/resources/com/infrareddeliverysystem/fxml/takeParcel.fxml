@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.infrareddeliverysystem.controllers.TakeParcelController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.infrareddeliverysystem.controllers.TakeParcelController">
+   <children>
+      <TextField fx:id="description" layoutX="91.0" layoutY="14.0" />
+      <TextField fx:id="type" layoutX="92.0" layoutY="64.0" />
+      <TextField fx:id="weight" layoutX="93.0" layoutY="115.0" />
+      <TextField fx:id="senderName" layoutX="93.0" layoutY="167.0" />
+      <TextField fx:id="senderPhone" layoutX="93.0" layoutY="220.0" />
+      <TextField fx:id="receiverName" layoutX="93.0" layoutY="274.0" />
+      <TextField fx:id="receiverPhone" layoutX="93.0" layoutY="322.0" />
+      <TextField fx:id="receiverAddress" layoutX="95.0" layoutY="361.0" />
+      <TextField fx:id="price" layoutX="369.0" layoutY="14.0" />
+      <Label layoutX="14.0" layoutY="18.0" text="Description" />
+      <Label layoutX="16.0" layoutY="68.0" text="Type" />
+      <Label layoutX="15.0" layoutY="119.0" text="Weight" />
+      <Label layoutX="15.0" layoutY="171.0" text="Sender Name" />
+      <Label layoutX="15.0" layoutY="224.0" text="Sender Phone" />
+      <Label layoutX="15.0" layoutY="278.0" text="Receiver Name" />
+      <Label layoutX="15.0" layoutY="326.0" text="Receiver Phone" />
+      <Label layoutX="15.0" layoutY="365.0" text="Address" />
+      <Label layoutX="300.0" layoutY="18.0" text="Price" />
+      <Label layoutX="271.0" layoutY="68.0" text="Delivery Charge" />
+      <Label layoutX="271.0" layoutY="119.0" text="Delivery Date" />
+      <Label fx:id="total" layoutX="379.0" layoutY="162.0" prefHeight="18.0" prefWidth="174.0" text="0.00" />
+      <Label layoutX="271.0" layoutY="162.0" text="Total" />
+      <TextField fx:id="deliveryCharge" layoutX="370.0" layoutY="64.0" />
+      <TextField fx:id="deliveryDate" layoutX="371.0" layoutY="115.0" />
+      <ListView fx:id="deliveryManList" layoutX="386.0" layoutY="187.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button layoutX="272.0" layoutY="208.0" mnemonicParsing="false" onAction="#onRegister" text="Register" />
+      <Button layoutX="272.0" layoutY="274.0" mnemonicParsing="false" onAction="#switchToOffice" text="Back" />
+   </children>
 </AnchorPane>
