@@ -1,16 +1,31 @@
 package com.infrareddeliverysystem.controllers;
 
 import com.infrareddeliverysystem.Main;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 
+import javafx.animation.TranslateTransition;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.util.Duration;
+
 public class HomeController {
+    public Button menuButton;
+    public Label title_label;
+    public Label homeLabel;
+    public AnchorPane top_bar;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -18,11 +33,20 @@ public class HomeController {
     public void switchToAdminLogin(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/adminLogin.fxml"));
         root = fxmlLoader.load();
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Admin Login Page");
         stage.show();
+    }
+
+    @FXML
+    public void initialize() {
+        homeLabel.setTranslateX(-600); // Start off-screen to the left
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(2), homeLabel);
+        tt.setToX(0); // Move to center
+        tt.setInterpolator(javafx.animation.Interpolator.EASE_OUT);
+        tt.play();
     }
 
 

@@ -10,7 +10,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.bson.Document;
 
@@ -18,6 +20,8 @@ import org.bson.Document;
 import java.io.IOException;
 
 public class RegisterAdminController {
+    public Label title_label;
+    public AnchorPane top_bar;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -32,7 +36,7 @@ public class RegisterAdminController {
     public void switchToOffice(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/office.fxml"));
         root = fxmlLoader.load();
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Office Page");

@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.bson.Document;
@@ -19,6 +20,7 @@ import org.bson.Document;
 import java.io.IOException;
 
 public class adminLoginController {
+    public Label title_label;
     @FXML
     private TextField adminLoginUserName;
     @FXML

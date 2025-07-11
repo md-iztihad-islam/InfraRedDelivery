@@ -1,0 +1,91 @@
+
+#title_label {
+
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a237e;
+    -fx-padding: 15;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    /*-fx-border-color: #000000;*/
+
+}
+
+#homeLabel {
+    -fx-font-size: 18px;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-weight: bold;
+    -fx-text-fill: #263238; /* dark blue-grey */
+    /*-fx-background-color: rgba(255, 255, 255, 0.85);*/
+    /*-fx-background-radius: 12px;*/
+    -fx-padding: 20 40;
+    -fx-effect: dropshadow(gaussian, #90caf9, 12, 0.4, 0, 2);
+    -fx-alignment: center;
+    /*-fx-border-color: #64b5f6;*/
+    /*-fx-border-width: 2px;*/
+    /*-fx-border-radius: 12px;*/
+}
+
+#top_bar {
+    /*need a bg color that goes well with #1a237e*/
+
+    /* light yellow */
+    -fx-padding: 10 20;
+    -fx-border-color: #64b5f6; /* border color */
+    /*-fx-border-width: 2px; !* border width *!*/
+    /*-fx-border-radius: 8px; !* rounded corners *!*/
+    -fx-effect: dropshadow(gaussian, #b3e5fc, 8, 0.2, 0, 2); /* shadow effect */
+}
+
+#loginAnchor {
+    -fx-background-color: #f5faff;
+    -fx-border-color: #64b5f6;
+    -fx-border-width: 2px;
+    /*-fx-border-radius: 10px;*/
+    -fx-padding: 12;
+    -fx-effect: dropshadow(gaussian, #b3e5fc, 8, 0.2, 0, 2);
+}
+
+#adminLoginUserName, #adminLoginPassword {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #64b5f6;
+    -fx-border-width: 2px;
+    -fx-border-radius: 6px;
+    -fx-padding: 8 12;
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+#adminLoginLabel {
+
+    -fx-background-color: #87CEEB; /* Sky blue */
+    -fx-text-fill: #1a237e; /* Deep blue for contrast */
+    -fx-font-size: 18px;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-weight: bold;
+    -fx-padding: 12 24;
+    -fx-background-radius: 2px;
+    -fx-effect: dropshadow(gaussian, #b3e5fc, 6, 0.3, 0, 2);
+    /*-fx-border-color: #64b5f6;*/
+    /*-fx-border-width: 2px;*/
+    /*-fx-border-radius: 8px;*/
+}
+
+#menuButton {
+/ / set background color as root background;
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 10px;
+    -fx-text-fill: #000000;
+
+}
+
+#menuButton:pressed {
+    -fx-background-color: #87CEEB;
+
+
+}
+
+#menuButton:hover {
+    -fx-background-color: #87CEEB;
+    -fx-cursor: hand;
+}
+
