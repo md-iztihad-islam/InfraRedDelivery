@@ -10,9 +10,9 @@
         <AnchorPane fx:id="top_bar" layoutX="-1.0" prefHeight="85.0" prefWidth="629.0" stylesheets="@style.css">
             <children>
                 <Label fx:id="title_label" layoutX="14.0" layoutY="15.0" stylesheets="@style.css" text="InfraRed Courier Delivery System" />
-                <Button fx:id="menuButton" alignment="CENTER" layoutX="353.0" layoutY="27.0" mnemonicParsing="false" stylesheets="@style.css" text="Home" wrapText="true" />
-                <Button fx:id="menuButton" alignment="CENTER" layoutX="435.0" layoutY="27.0" mnemonicParsing="false" stylesheets="@style.css" text="Admin" textAlignment="CENTER" />
-                <Button fx:id="menuButton" alignment="CENTER" layoutX="525.0" layoutY="27.0" mnemonicParsing="false" stylesheets="@style.css" text="Staff" />
+                <Button fx:id="menuButton" alignment="CENTER" layoutX="328.0" layoutY="27.0" mnemonicParsing="false" onAction="#onHomeButton" stylesheets="@style.css" text="Home" wrapText="true" />
+                <Button fx:id="menuButton" alignment="CENTER" layoutX="422.0" layoutY="27.0" mnemonicParsing="false" onAction="#onAdminButton" stylesheets="@style.css" text="Admin" textAlignment="CENTER" />
+                <Button fx:id="menuButton" alignment="CENTER" layoutX="525.0" layoutY="27.0" mnemonicParsing="false" onAction="#onStaffButton" stylesheets="@style.css" text="Staff" />
             </children>
         </AnchorPane>
         <AnchorPane fx:id="form_field" layoutX="123.0" layoutY="92.0" prefHeight="316.0" prefWidth="387.0">

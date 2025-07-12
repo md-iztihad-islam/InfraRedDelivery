@@ -1,6 +1,8 @@
 package com.infrareddeliverysystem.models;
 
 import org.bson.Document;
+import org.mindrot.jbcrypt.BCrypt;
+import org.bson.Document;
 
 import java.util.ArrayList;
 
@@ -20,26 +22,40 @@ public class DeliveryMan {
     public DeliveryMan(String name, String username, String password, String email, String phone, String drivingLicenseNo, String carNumber, String salary) {
         this.name = name;
         this.username = username;
-        this.password = password;
+        setPassword(password);
         this.email = email;
         this.phone = phone;
         this.drivingLicenseNo = drivingLicenseNo;
         this.carNumber = carNumber;
         this.salary = salary;
-        this.deliveries = new ArrayList();
+        this.deliveries = new ArrayList<String>();
         this.deliveryCompleted = 0;
         this.deliveryFailed = 0;
     }
 
     public Document toDocument() {
-        return new Document("name", name)
-                .append("username", username)
-                .append("password", password)
-                .append("email", email)
-                .append("phone", phone)
-                .append("drivingLicenseNo", drivingLicenseNo)
-                .append("carNumber", carNumber)
-                .append("salary", salary);
+        Document document = new Document();
+        document.put("name", name);
+        document.put("username", username);
+        document.put("password", password);
+        document.put("email", email);
+        document.put("phone", phone);
+        document.put("drivingLicenseNo", drivingLicenseNo);
+        document.put("carNumber", carNumber);
+        document.put("salary", salary);
+        document.put("deliveries", deliveries);
+        document.put("deliveryCompleted", deliveryCompleted);
+        document.put("deliveryFailed", deliveryFailed);
+
+        return document;
+    }
+
+    private String hashPassword(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+
+    public static boolean checkPassword(String password, String hashedPassword) {
+        return BCrypt.checkpw(password, hashedPassword);
     }
 
     public String getName() {
@@ -63,7 +79,7 @@ public class DeliveryMan {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = hashPassword(password);
     }
 
     public String getEmail() {

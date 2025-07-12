@@ -33,9 +33,9 @@
                   <Font size="14.0" />
                </font>
             </Label>
-              <Button fx:id="menuButton" alignment="CENTER" layoutX="334.0" layoutY="34.0" mnemonicParsing="false" stylesheets="@style.css" text="Home" wrapText="true" />
-              <Button fx:id="menuButton" alignment="CENTER" layoutX="427.0" layoutY="34.0" mnemonicParsing="false" stylesheets="@style.css" text="Admin" textAlignment="CENTER" />
-              <Button fx:id="menuButton" alignment="CENTER" layoutX="531.0" layoutY="34.0" mnemonicParsing="false" stylesheets="@style.css" text="Staff" />
+              <Button fx:id="menuButton" alignment="CENTER" layoutX="334.0" layoutY="34.0" mnemonicParsing="false" onAction="#onHomeButton" stylesheets="@style.css" text="Home" wrapText="true" />
+              <Button fx:id="menuButton" alignment="CENTER" layoutX="427.0" layoutY="34.0" mnemonicParsing="false" onAction="#onAdminButton" stylesheets="@style.css" text="Admin" textAlignment="CENTER" />
+              <Button fx:id="menuButton" alignment="CENTER" layoutX="531.0" layoutY="34.0" mnemonicParsing="false" onAction="#onStaffButton" stylesheets="@style.css" text="Staff" />
          </children>
       </AnchorPane>
     </children>

@@ -11,9 +11,9 @@
         <AnchorPane fx:id="top_bar" layoutX="-1.0" prefHeight="85.0" prefWidth="629.0">
             <children>
                 <Label fx:id="title_label" layoutX="14.0" layoutY="15.0" text="InfraRed Courier Delivery System" />
-                <Button fx:id="menuButton" layoutX="318.0" layoutY="27.0" text="Home" />
-                <Button fx:id="menuButton" layoutX="416.0" layoutY="27.0" text="Admin" />
-                <Button fx:id="menuButton" layoutX="525.0" layoutY="27.0" text="Staff" />
+                <Button fx:id="menuButton" layoutX="318.0" layoutY="27.0" onAction="#onHomeButton" text="Home" />
+                <Button fx:id="menuButton" layoutX="416.0" layoutY="27.0" onAction="#onAdminButton" text="Admin" />
+                <Button fx:id="menuButton" layoutX="525.0" layoutY="27.0" onAction="#onStaffButton" text="Staff" />
             </children>
         </AnchorPane>
         <AnchorPane fx:id="form_field" layoutX="123.0" layoutY="92.0" prefHeight="316.0" prefWidth="387.0">
