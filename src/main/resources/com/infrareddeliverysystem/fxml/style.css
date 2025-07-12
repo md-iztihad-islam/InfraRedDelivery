@@ -1,0 +1,202 @@
+
+#title_label {
+
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a237e;
+    -fx-padding: 15;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    /*-fx-border-color: #000000;*/
+
+}
+
+#homeLabel {
+    -fx-font-size: 18px;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-weight: bold;
+    -fx-text-fill: #263238; /* dark blue-grey */
+    /*-fx-background-color: rgba(255, 255, 255, 0.85);*/
+    /*-fx-background-radius: 12px;*/
+    -fx-padding: 20 40;
+    -fx-effect: dropshadow(gaussian, #90caf9, 12, 0.4, 0, 2);
+    -fx-alignment: center;
+    /*-fx-border-color: #64b5f6;*/
+    /*-fx-border-width: 2px;*/
+    /*-fx-border-radius: 12px;*/
+}
+
+#top_bar {
+    /*need a bg color that goes well with #1a237e*/
+
+    /* light yellow */
+    -fx-padding: 10 20;
+    -fx-border-color: #64b5f6; /* border color */
+    /*-fx-border-width: 2px; !* border width *!*/
+    /*-fx-border-radius: 8px; !* rounded corners *!*/
+    -fx-effect: dropshadow(gaussian, #b3e5fc, 8, 0.2, 0, 2); /* shadow effect */
+}
+
+#loginAnchor, #adminRegisterBox, #officeBox {
+    -fx-background-color: #f5faff;
+    -fx-border-color: #64b5f6;
+    -fx-border-width: 2px;
+    /*-fx-border-radius: 10px;*/
+    -fx-padding: 12;
+    -fx-effect: dropshadow(gaussian, #b3e5fc, 8, 0.2, 0, 2);
+}
+
+#adminLoginUserName, #adminLoginPassword, #adminName, #adminUsername, #adminPassword {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #64b5f6;
+    -fx-border-width: 2px;
+    -fx-border-radius: 6px;
+    -fx-padding: 8 12;
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+#cost_per_kg, #take_parcel, #track_parcel, #register_admin, #register_delivery_man {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 10px;
+    -fx-text-fill: #000000;
+    -fx-font-size: 14px;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-weight: bold;
+    -fx-padding: 12 32;
+    -fx-effect: dropshadow(gaussian, #b3e5fc, 6, 0.2, 0, 2);
+    -fx-transition: all 0.2s;
+}
+
+#cost_per_kg:hover, #take_parcel:hover, #track_parcel:hover, #register_admin:hover, #register_delivery_man:hover {
+    -fx-background-color: #FFFFFF;
+    -fx-effect: dropshadow(gaussian, #64b5f6, 12, 0.4, 0, 2);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-cursor: hand;
+}
+
+#cost_per_kg:pressed, #take_parcel:pressed, #track_parcel:pressed, #register_admin:pressed, #register_delivery_man:pressed {
+    -fx-background-color: #FFFFFF;
+    -fx-effect: dropshadow(gaussian, #1a237e, 8, 0.5, 0, 2);
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+#adminLoginLabel {
+
+    -fx-background-color: #87CEEB; /* Sky blue */
+    -fx-text-fill: #1a237e; /* Deep blue for contrast */
+    -fx-font-size: 18px;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-weight: bold;
+    -fx-padding: 12 24;
+    -fx-background-radius: 2px;
+    -fx-effect: dropshadow(gaussian, #b3e5fc, 6, 0.3, 0, 2);
+    /*-fx-border-color: #64b5f6;*/
+    /*-fx-border-width: 2px;*/
+    /*-fx-border-radius: 8px;*/
+}
+
+#menuButton {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 5px;
+    -fx-text-fill: #000000;
+    -fx-font-size: 12px;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-weight: bold;
+    -fx-padding: 8 20;
+    -fx-effect: dropshadow(gaussian, #b3e5fc, 4, 0.15, 0, 1);
+    -fx-transition: all 0.2s;
+}
+
+#menuButton:hover {
+    -fx-background-color: #87CEEB;
+    -fx-effect: dropshadow(gaussian, #64b5f6, 10, 0.3, 0, 2);
+    -fx-scale-x: 1.04;
+    -fx-scale-y: 1.04;
+    -fx-cursor: hand;
+}
+
+#menuButton:pressed {
+    -fx-background-color: #87CEEB;
+    -fx-effect: dropshadow(gaussian, #1a237e, 6, 0.4, 0, 1);
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+#dmCarNumber, #dmDrivingLicense, #dmSalary, #dmEmail, #dmName, #dmPassword, #dmPhone, #dmUsername {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #64b5f6;
+    -fx-border-width: 2px;
+    -fx-border-radius: 6px;
+    -fx-padding: 8 12;
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+/*#dmCarNumber, #dmDrivingLicense, #dmSalary, #dmEmail, #dmName, #dmPassword, #dmPhone, #dmUsername:hover {*/
+/*    -fx-effect: dropshadow(gaussian, #64b5f6, 16, 0.35, 0, 4);*/
+/*}*/
+
+#form_field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #64b5f6;
+    -fx-border-width: 2px;
+    -fx-border-radius: 0px;
+    -fx-padding: 10 16;
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-effect: dropshadow(gaussian, #b3e5fc, 4, 0.15, 0, 1);
+    -fx-transition: all 0.2s;
+}
+
+#form_field:focused, #loginAnchor:focused, #adminRegisterBox:focused, #officeBox:focused {
+    -fx-border-color: #1a237e;
+    -fx-effect: dropshadow(gaussian, #64b5f6, 8, 0.3, 0, 2);
+    -fx-background-color: #f0f7ff;
+}
+
+#form_field:hover, #loginAnchor:hover, #adminRegisterBox:hover, #officeBox:hover {
+    -fx-effect: dropshadow(gaussian, #64b5f6, 8, 0.25, 0, 2);
+}
+
+#description, #type, #weight, #senderName, #senderPhone, #receiverName, #receiverPhone, #receiverAddress,
+#price, #deliveryCharge, #deliveryDate {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #64b5f6;
+    -fx-border-width: 2px;
+    -fx-border-radius: 6px;
+    -fx-padding: 8 12;
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+#deliveryManList {
+    -fx-background-color: #f5faff;
+    -fx-border-color: #64b5f6;
+    -fx-border-width: 2px;
+    -fx-border-radius: 6px;
+    -fx-font-size: 14px;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+#deliveryManUserName, #deliveryManPassword {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #64b5f6;
+    -fx-border-width: 2px;
+    -fx-border-radius: 6px;
+    -fx-padding: 8 12;
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+#deliveryManLoginLabel {
+    -fx-background-color: #87CEEB; /* Sky blue */
+    -fx-text-fill: #1a237e; /* Deep blue for contrast */
+    -fx-font-size: 18px;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-weight: bold;
+    -fx-padding: 12 24;
+    -fx-background-radius: 2px;
+    -fx-effect: dropshadow(gaussian, #b3e5fc, 6, 0.3, 0, 2);
+}

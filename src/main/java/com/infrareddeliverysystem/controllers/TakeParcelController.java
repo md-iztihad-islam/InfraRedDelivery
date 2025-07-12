@@ -29,19 +29,32 @@ import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 
 public class TakeParcelController {
-    @FXML private TextField description;
-    @FXML private TextField type;
-    @FXML private TextField weight;
-    @FXML private TextField senderName;
-    @FXML private TextField senderPhone;
-    @FXML private TextField receiverName;
-    @FXML private TextField receiverPhone;
-    @FXML private TextField receiverAddress;
-    @FXML private TextField price;
-    @FXML private TextField deliveryCharge;
-    @FXML private TextField deliveryDate;
-    @FXML private Label total;
-    @FXML private ListView<String> deliveryManList;
+    @FXML
+    private TextField description;
+    @FXML
+    private TextField type;
+    @FXML
+    private TextField weight;
+    @FXML
+    private TextField senderName;
+    @FXML
+    private TextField senderPhone;
+    @FXML
+    private TextField receiverName;
+    @FXML
+    private TextField receiverPhone;
+    @FXML
+    private TextField receiverAddress;
+    @FXML
+    private TextField price;
+    @FXML
+    private TextField deliveryCharge;
+    @FXML
+    private TextField deliveryDate;
+    @FXML
+    private Label total;
+    @FXML
+    private ListView<String> deliveryManList;
 
     private Stage stage;
     private Scene scene;
@@ -49,13 +62,23 @@ public class TakeParcelController {
 
     public MongoDatabase database = MongodbConnection.getDatabase("MainDB");
 
-    public void initialize(){
+    public void initialize() {
         loadDeliveryMen();
     }
 
+    public void goTakeParcelNextPage(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/takeParcelNext.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Parcel Registration Next Page");
+        stage.show();
+
+    }
 
     private void loadDeliveryMen() {
-        MongoCollection <Document> deliveryManCollection = database.getCollection("DeliveryMan");
+        MongoCollection<Document> deliveryManCollection = database.getCollection("DeliveryMan");
         List<Document> deliveryMen = deliveryManCollection.find().into(new ArrayList<>());
         ObservableList<String> deliveryManNames = FXCollections.observableArrayList();
 
@@ -88,7 +111,6 @@ public class TakeParcelController {
         Document parcelDocument = parcel.toDocument();
 
 
-
         MongodbConnection.getCollection("MainDB", "Parcels").insertOne(parcelDocument);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -101,11 +123,43 @@ public class TakeParcelController {
     public void switchToOffice(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/office.fxml"));
         root = fxmlLoader.load();
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Admin Login Page");
         stage.show();
     }
 
+    @FXML
+    public void onHomeButton(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/home.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Home Page");
+        stage.show();
+    }
+
+    public void onAdminButton(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/adminLogin.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Admin Login Page");
+        stage.show();
+    }
+
+    public void onStaffButton(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/deliveryManLogin.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Delivery Man Login Page");
+        stage.show();
+    }
+
 }
+

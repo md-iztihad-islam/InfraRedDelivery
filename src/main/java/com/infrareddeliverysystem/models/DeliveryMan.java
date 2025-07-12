@@ -27,7 +27,7 @@ public class DeliveryMan {
         this.drivingLicenseNo = drivingLicenseNo;
         this.carNumber = carNumber;
         this.salary = salary;
-        this.deliveries = new ArrayList<String>();
+        this.deliveries = new ArrayList();
         this.deliveryCompleted = 0;
         this.deliveryFailed = 0;
     }
@@ -53,11 +53,9 @@ public class DeliveryMan {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
-    public static boolean checkPassword(String password,  String hashedPassword) {
+    public static boolean checkPassword(String password, String hashedPassword) {
         return BCrypt.checkpw(password, hashedPassword);
     }
-
-
 
     public String getName() {
         return name;

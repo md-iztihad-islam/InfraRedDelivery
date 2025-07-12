@@ -5,18 +5,22 @@ import org.bson.Document;
 import java.util.Date;
 
 public class Parcel {
+
     private String parcelDescription;
+
     private String parcelType;
     private double weight;
 
     private String senderName;
     private String senderPhone;
 
+
     private String receiverName;
     private String receiverPhone;
     private String receiverAddress;
 
     private String deliveryManId;
+
     private String status;
     private int price;
     public int deliveryCharge;
@@ -26,14 +30,17 @@ public class Parcel {
 
     public Parcel(String parcelDescription, String parcelType, double weight, String senderName, String senderPhone, String receiverName, String receiverPhone, String receiverAddress, String deliveryManId, int price, int deliveryCharge, String estimatedDeliveryDate) {
         this.parcelDescription = parcelDescription;
+//        this.parcelImage = parcelImage;
         this.parcelType = parcelType;
         this.weight = weight;
         this.senderName = senderName;
         this.senderPhone = senderPhone;
+//        this.senderAddress = senderAddress;
         this.receiverName = receiverName;
         this.receiverPhone = receiverPhone;
         this.receiverAddress = receiverAddress;
         this.deliveryManId = deliveryManId;
+//        this.paymentMethod = paymentMethod;
         this.status = "Pending";
         this.price = price;
         this.whereAt = "At Our Warehouse";
@@ -43,9 +50,8 @@ public class Parcel {
         this.estimatedDeliveryDate = estimatedDeliveryDate;
     }
 
-    public Document toDocument(){
+    public Document toDocument() {
         Document parcelDocument = new Document();
-
         parcelDocument.put("parcelDescription", parcelDescription);
         parcelDocument.put("parcelType", parcelType);
         parcelDocument.put("weight", weight);
@@ -61,9 +67,9 @@ public class Parcel {
         parcelDocument.put("totalCharge", totalCharge);
         parcelDocument.put("whereAt", whereAt);
         parcelDocument.put("estimatedDeliveryDate", estimatedDeliveryDate);
-
         return parcelDocument;
     }
+
 
     public String getParcelDescription() {
         return parcelDescription;
@@ -72,6 +78,14 @@ public class Parcel {
     public void setParcelDescription(String parcelDescription) {
         this.parcelDescription = parcelDescription;
     }
+
+//    public String getParcelImage() {
+//        return parcelImage;
+//    }
+//
+//    public void setParcelImage(String parcelImage) {
+//        this.parcelImage = parcelImage;
+//    }
 
     public String getParcelType() {
         return parcelType;
@@ -105,6 +119,14 @@ public class Parcel {
         this.senderPhone = senderPhone;
     }
 
+//    public String getSenderAddress() {
+//        return senderAddress;
+//    }
+//
+//    public void setSenderAddress(String senderAddress) {
+//        this.senderAddress = senderAddress;
+//    }
+
     public String getReceiverName() {
         return receiverName;
     }
@@ -136,6 +158,14 @@ public class Parcel {
     public void setDeliveryManId(String deliveryManId) {
         this.deliveryManId = deliveryManId;
     }
+
+//    public String getPaymentMethod() {
+//        return paymentMethod;
+//    }
+//
+//    public void setPaymentMethod(String paymentMethod) {
+//        this.paymentMethod = paymentMethod;
+//    }
 
     public String getStatus() {
         return status;

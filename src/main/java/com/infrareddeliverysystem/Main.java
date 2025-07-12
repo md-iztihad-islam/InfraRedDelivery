@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class Main extends Application {
     @Override
@@ -13,6 +14,9 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/home.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
+        String css = Objects.requireNonNull(getClass().getResource("/com/infrareddeliverysystem/fxml/style.css")
+        ).toExternalForm();
+        scene.getStylesheets().add(css);
         stage.setTitle("Home Page");
         stage.show();
     }

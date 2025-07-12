@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.bson.Document;
@@ -19,6 +20,7 @@ import org.bson.Document;
 import java.io.IOException;
 
 public class adminLoginController {
+    public Label title_label;
     @FXML
     private TextField adminLoginUserName;
     @FXML
@@ -31,7 +33,7 @@ public class adminLoginController {
     public void switchToOffice(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/office.fxml"));
         root = fxmlLoader.load();
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Admin Login Page");
@@ -49,19 +51,19 @@ public class adminLoginController {
             alert.setHeaderText(null);
             alert.setContentText("Please fill in both username and password.");
             alert.showAndWait();
-        }else {
+        } else {
             MongoDatabase db = MongodbConnection.getDatabase("MainDB");
-            MongoCollection < Document > collection = db.getCollection("Admin");
+            MongoCollection<Document> collection = db.getCollection("Admin");
 
             Document query = new Document("username", userName);
             Document data = collection.find(query).first();
             System.out.println("username: " + data.get("username"));
             System.out.println("password: " + data.get("password"));
 
-            if(data != null){
-                String storedPasswordHash =  data.getString("password");
+            if (data != null) {
+                String storedPasswordHash = data.getString("password");
 
-                if(Admin.checkPassword(password, storedPasswordHash)){
+                if (Admin.checkPassword(password, storedPasswordHash)) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Login Success");
                     alert.setHeaderText(null);
@@ -72,7 +74,7 @@ public class adminLoginController {
 
                 }
 
-            }else{
+            } else {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Login Error");
                 alert.setHeaderText(null);
@@ -80,5 +82,37 @@ public class adminLoginController {
                 alert.showAndWait();
             }
         }
+    }
+
+    @FXML
+    public void onHomeButton(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/home.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Home Page");
+        stage.show();
+
+    }
+
+    public void onAdminButton(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/adminLogin.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Admin Login Page");
+        stage.show();
+    }
+
+    public void onStaffButton(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/deliveryManLogin.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Home Page");
+        stage.show();
     }
 }

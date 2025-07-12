@@ -3,6 +3,8 @@ package com.infrareddeliverysystem.controllers;
 import com.infrareddeliverysystem.Main;
 import com.infrareddeliverysystem.db.MongodbConnection;
 import com.infrareddeliverysystem.models.DeliveryMan;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,76 +12,72 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.bson.Document;
 
 import java.io.IOException;
 
-public class RegisterDeliveryManController {
+public class deliveryManLoginController {
+    @FXML
+    private Label title_label;
+    @FXML
+    private TextField deliveryManUserName;
+    @FXML
+    private TextField deliveryManPassword;
+
     private Stage stage;
     private Scene scene;
     private Parent root;
 
-    @FXML
-    private TextField dmName;
-    @FXML
-    private TextField dmUsername;
-    @FXML
-    private TextField dmPassword;
-    @FXML
-    private TextField dmEmail;
-    @FXML
-    private TextField dmPhone;
-    @FXML
-    private TextField dmDrivingLicense;
-    @FXML
-    private TextField dmCarNumber;
-    @FXML
-    private TextField dmSalary;
-
-    @FXML
-    public void goDeliveryManNextPage(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/registerDeliveryManNext.fxml"));
-        root = loader.load();
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("Register Last Page");
-        stage.show();
-    }
-
-    @FXML
-    public void deliveryManRegistration(ActionEvent event) {
-        String name = dmName.getText();
-        String username = dmUsername.getText();
-        String password = dmPassword.getText();
-        String email = dmEmail.getText();
-        String phone = dmPhone.getText();
-        String drivingLicenseNo = dmDrivingLicense.getText();
-        String carNumber = dmCarNumber.getText();
-        String salary = dmSalary.getText();
-
-        DeliveryMan deliveryMan = new DeliveryMan(name, username, password, email, phone, drivingLicenseNo, carNumber, salary);
-        Document deliveryManDoc = deliveryMan.toDocument();
-
-        MongodbConnection.getCollection("MainDB", "DeliveryMan").insertOne(deliveryManDoc);
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Registration Success");
-        alert.setHeaderText("Registration Success");
-        alert.showAndWait();
-    }
-
-    @FXML
     public void switchToOffice(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/office.fxml"));
         root = fxmlLoader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Office Page");
+        stage.setTitle("Delivery Man Page");
         stage.show();
+    }
+
+    public void deliveryManLogin(ActionEvent event) throws IOException {
+        String userName = deliveryManUserName.getText();
+        String password = deliveryManPassword.getText();
+
+        if (userName.isEmpty() && password.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Input Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Please fill in both username and password.");
+            alert.showAndWait();
+        } else {
+            MongoDatabase db = MongodbConnection.getDatabase("MainDB");
+            MongoCollection<Document> collection = db.getCollection("DeliveryMan");
+
+            Document query = new Document("username", userName);
+            Document data = collection.find(query).first();
+
+            if (data != null) {
+                String storedPasswordHash = data.getString("password");
+
+                if (DeliveryMan.checkPassword(password, storedPasswordHash)) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Login Success");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Welcome, " + userName + "!");
+                    alert.showAndWait();
+
+                    switchToOffice(event);
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Login Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Error");
+                alert.showAndWait();
+            }
+        }
     }
 
     @FXML
