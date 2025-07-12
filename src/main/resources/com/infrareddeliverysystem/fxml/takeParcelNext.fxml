@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="409.0" prefWidth="625.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.infrareddeliverysystem.controllers.TakeParcelController">
+    <children>
+        <AnchorPane fx:id="top_bar" layoutX="-1.0" prefHeight="85.0" prefWidth="629.0">
+            <children>
+                <Label fx:id="title_label" layoutX="14.0" layoutY="15.0" text="InfraRed Courier Delivery System" />
+                <Button fx:id="menuButton" layoutX="318.0" layoutY="27.0" text="Home" />
+                <Button fx:id="menuButton" layoutX="416.0" layoutY="27.0" text="Admin" />
+                <Button fx:id="menuButton" layoutX="525.0" layoutY="27.0" text="Staff" />
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="form_field" layoutX="123.0" layoutY="92.0" prefHeight="316.0" prefWidth="387.0">
+            <children>
+                <Label layoutX="48.0" layoutY="26.0" text="Price" />
+                <TextField fx:id="price" layoutX="130.0" layoutY="16.0" promptText="Price" />
+                <Label layoutX="9.0" layoutY="66.0" text="Delivery Charge" />
+                <TextField fx:id="deliveryCharge" layoutX="130.0" layoutY="56.0" promptText="Delivery Charge" />
+                <Label layoutX="18.0" layoutY="96.0" text="Delivery Date" />
+                <TextField fx:id="deliveryDate" layoutX="130.0" layoutY="96.0" promptText="Delivery Date" />
+                <Label layoutX="30.0" layoutY="140.0" text="Total" />
+                <Label fx:id="total" layoutX="133.0" layoutY="140.0" prefWidth="120.0" text="0.00" />
+                <Label layoutX="19.0" layoutY="206.0" text="Delivery Man" />
+                <ListView fx:id="deliveryManList" layoutX="130.0" layoutY="176.0" prefHeight="80.0" prefWidth="220.0" />
+                <Button fx:id="menuButton" layoutX="150.0" layoutY="270.0" onAction="#onRegister" text="Register" />
+            </children>
+        </AnchorPane>
+        <Button fx:id="menuButton" layoutX="553.0" layoutY="371.0" onAction="#switchToOffice" text="Back" />
+    </children>
+</AnchorPane>

@@ -1,5 +1,7 @@
 package com.infrareddeliverysystem.models;
 
+import org.bson.Document;
+
 import java.util.ArrayList;
 
 public class DeliveryMan {
@@ -11,7 +13,7 @@ public class DeliveryMan {
     private String drivingLicenseNo;
     private String carNumber;
     private String salary;
-    private ArrayList <String> deliveries;
+    private ArrayList<String> deliveries;
     private int deliveryCompleted;
     private int deliveryFailed;
 
@@ -27,6 +29,17 @@ public class DeliveryMan {
         this.deliveries = new ArrayList();
         this.deliveryCompleted = 0;
         this.deliveryFailed = 0;
+    }
+
+    public Document toDocument() {
+        return new Document("name", name)
+                .append("username", username)
+                .append("password", password)
+                .append("email", email)
+                .append("phone", phone)
+                .append("drivingLicenseNo", drivingLicenseNo)
+                .append("carNumber", carNumber)
+                .append("salary", salary);
     }
 
     public String getName() {

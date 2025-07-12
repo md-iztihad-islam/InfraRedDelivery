@@ -7,40 +7,28 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.infrareddeliverysystem.controllers.adminLoginController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.infrareddeliverysystem.controllers.adminLoginController">
     <children>
-        <HBox prefHeight="59.0" prefWidth="231.0"/>
-        <Button fx:id="menuButton" alignment="CENTER" layoutX="373.0" layoutY="14.0" mnemonicParsing="false"
-                stylesheets="@style.css" text="Home" wrapText="true"/>
-        <Button fx:id="menuButton" alignment="CENTER" layoutX="448.0" layoutY="14.0" mnemonicParsing="false"
-                stylesheets="@style.css" text="Admin" textAlignment="CENTER"/>
-        <Button fx:id="menuButton" alignment="CENTER" layoutX="517.0" layoutY="14.0" mnemonicParsing="false"
-                stylesheets="@style.css" text="Staff"/>
+        <HBox prefHeight="59.0" prefWidth="231.0" />
+        <Button fx:id="menuButton" alignment="CENTER" layoutX="324.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@style.css" text="Home" wrapText="true" />
+        <Button fx:id="menuButton" alignment="CENTER" layoutX="423.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@style.css" text="Admin" textAlignment="CENTER" />
+        <Button fx:id="menuButton" alignment="CENTER" layoutX="523.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@style.css" text="Staff" />
 
-        <Label fx:id="title_label" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="-7.0" prefHeight="59.0"
-               prefWidth="291.0" stylesheets="@style.css" text="InfraRed Courier Management System"
-               textAlignment="CENTER">
+        <Label fx:id="title_label" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="-7.0" prefHeight="59.0" prefWidth="291.0" stylesheets="@style.css" text="InfraRed Courier Management System" textAlignment="CENTER">
             <font>
-                <Font size="18.0"/>
+                <Font size="18.0" />
             </font>
         </Label>
-        <Label fx:id="adminLoginLabel" alignment="CENTER" layoutY="55.0" prefHeight="31.0" prefWidth="605.0"
-               stylesheets="@style.css" text="Admin Login" wrapText="true">
+        <Label fx:id="adminLoginLabel" alignment="CENTER" layoutY="55.0" prefHeight="31.0" prefWidth="605.0" stylesheets="@style.css" text="Admin Login" wrapText="true">
             <font>
-                <Font size="24.0"/>
+                <Font size="24.0" />
             </font>
         </Label>
-        <AnchorPane fx:id="loginAnchor" layoutX="161.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0"
-                    stylesheets="@style.css">
+        <AnchorPane fx:id="loginAnchor" layoutX="161.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css">
             <children>
-                <TextField fx:id="adminLoginUserName" layoutX="38.0" layoutY="29.0" promptText="Username"
-                           stylesheets="@style.css"/>
-                <TextField fx:id="adminLoginPassword" layoutX="38.0" layoutY="93.0" promptText="Password"
-                           stylesheets="@style.css"/>
-                <Button fx:id="menuButton" layoutX="115.0" layoutY="158.0" mnemonicParsing="false"
-                        onAction="#adminLogin" stylesheets="@style.css" text="Login"/>
+                <TextField fx:id="adminLoginUserName" layoutX="38.0" layoutY="29.0" promptText="Username" stylesheets="@style.css" />
+                <TextField fx:id="adminLoginPassword" layoutX="38.0" layoutY="93.0" promptText="Password" stylesheets="@style.css" />
+                <Button fx:id="menuButton" layoutX="106.0" layoutY="161.0" mnemonicParsing="false" onAction="#adminLogin" stylesheets="@style.css" text="Login" />
             </children>
         </AnchorPane>
 
