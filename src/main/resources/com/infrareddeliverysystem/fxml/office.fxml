@@ -22,7 +22,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-              <Button fx:id="take_parcel" layoutX="288.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@style.css" text="Take Parcel">
+              <Button fx:id="take_parcel" layoutX="288.0" layoutY="14.0" mnemonicParsing="false" onAction="#onTakeParcel" stylesheets="@style.css" text="Take Parcel">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
