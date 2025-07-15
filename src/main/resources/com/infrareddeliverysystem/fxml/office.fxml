@@ -32,12 +32,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-              <Button fx:id="register_delivery_man" layoutX="253.0" layoutY="127.0" mnemonicParsing="false" stylesheets="@style.css" text="Register Delivery Man">
+              <Button fx:id="register_delivery_man" layoutX="253.0" layoutY="127.0" mnemonicParsing="false" onAction="#switchToDeliverManRegister" stylesheets="@style.css" text="Register Delivery Man">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-              <Button fx:id="track_parcel" layoutX="286.0" layoutY="188.0" mnemonicParsing="false" stylesheets="@style.css" text="Track Parcel">
+              <Button fx:id="track_parcel" layoutX="286.0" layoutY="188.0" mnemonicParsing="false" onAction="#switchToTrackParcel" stylesheets="@style.css" text="Track Parcel">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

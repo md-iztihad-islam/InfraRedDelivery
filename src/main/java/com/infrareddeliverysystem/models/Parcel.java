@@ -23,31 +23,19 @@ public class Parcel {
 
     private String status;
     private int price;
-    public int deliveryCharge;
-    public int totalCharge;
+    private int deliveryCharge;
+    private int totalCharge;
     private String whereAt;
     private String estimatedDeliveryDate;
+    private boolean isPaid;
+    private boolean isDelivered;
 
-    public Parcel(String parcelDescription, String parcelType, double weight, String senderName, String senderPhone, String receiverName, String receiverPhone, String receiverAddress, String deliveryManId, int price, int deliveryCharge, String estimatedDeliveryDate) {
-        this.parcelDescription = parcelDescription;
-//        this.parcelImage = parcelImage;
-        this.parcelType = parcelType;
-        this.weight = weight;
-        this.senderName = senderName;
-        this.senderPhone = senderPhone;
-//        this.senderAddress = senderAddress;
-        this.receiverName = receiverName;
-        this.receiverPhone = receiverPhone;
-        this.receiverAddress = receiverAddress;
-        this.deliveryManId = deliveryManId;
-//        this.paymentMethod = paymentMethod;
-        this.status = "Pending";
-        this.price = price;
+
+    public Parcel() {
+        this.status = "At our Warehouse";
         this.whereAt = "At Our Warehouse";
-        this.deliveryCharge = deliveryCharge;
-        this.totalCharge = price + deliveryCharge;
-        this.whereAt = "At Our Warehouse";
-        this.estimatedDeliveryDate = estimatedDeliveryDate;
+        this.isPaid = false;
+        this.isDelivered = false;
     }
 
     public Document toDocument() {
@@ -79,13 +67,21 @@ public class Parcel {
         this.parcelDescription = parcelDescription;
     }
 
-//    public String getParcelImage() {
-//        return parcelImage;
-//    }
-//
-//    public void setParcelImage(String parcelImage) {
-//        this.parcelImage = parcelImage;
-//    }
+    public boolean isDelivered() {
+        return isDelivered;
+    }
+
+    public void setDelivered(boolean delivered) {
+        isDelivered = delivered;
+    }
+
+    public boolean isPaid() {
+        return isPaid;
+    }
+
+    public void setPaid(boolean paid) {
+        isPaid = paid;
+    }
 
     public String getParcelType() {
         return parcelType;
@@ -119,14 +115,6 @@ public class Parcel {
         this.senderPhone = senderPhone;
     }
 
-//    public String getSenderAddress() {
-//        return senderAddress;
-//    }
-//
-//    public void setSenderAddress(String senderAddress) {
-//        this.senderAddress = senderAddress;
-//    }
-
     public String getReceiverName() {
         return receiverName;
     }
@@ -159,14 +147,6 @@ public class Parcel {
         this.deliveryManId = deliveryManId;
     }
 
-//    public String getPaymentMethod() {
-//        return paymentMethod;
-//    }
-//
-//    public void setPaymentMethod(String paymentMethod) {
-//        this.paymentMethod = paymentMethod;
-//    }
-
     public String getStatus() {
         return status;
     }
@@ -197,5 +177,21 @@ public class Parcel {
 
     public void setEstimatedDeliveryDate(String estimatedDeliveryDate) {
         this.estimatedDeliveryDate = estimatedDeliveryDate;
+    }
+
+    public int getDeliveryCharge() {
+        return deliveryCharge;
+    }
+
+    public void setDeliveryCharge(int deliveryCharge) {
+        this.deliveryCharge = deliveryCharge;
+    }
+
+    public int getTotalCharge() {
+        return totalCharge;
+    }
+
+    public void setTotalCharge(int totalCharge) {
+        this.totalCharge = totalCharge;
     }
 }

@@ -80,5 +80,16 @@ public class HomeController {
         tt.play();
     }
 
+    @FXML
+    public void switchToTrackingID(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/ParcelIDInput.fxml"));
+        root = fxmlLoader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Admin Login Page");
+        stage.show();
+    }
+
 
 }

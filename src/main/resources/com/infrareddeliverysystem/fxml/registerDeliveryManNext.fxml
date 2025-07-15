@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="409.0" prefWidth="625.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.infrareddeliverysystem.controllers.RegisterDeliveryManController">
+<AnchorPane prefHeight="409.0" prefWidth="625.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.infrareddeliverysystem.controllers.RegisterDeliveryManNextController">
     <children>
         <AnchorPane fx:id="top_bar" layoutX="-1.0" prefHeight="85.0" prefWidth="629.0" stylesheets="@style.css">
             <children>
