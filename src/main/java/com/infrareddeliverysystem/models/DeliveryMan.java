@@ -15,21 +15,24 @@ public class DeliveryMan {
     private String carNumber;
     private String salary;
     private ArrayList <String> deliveries;
+    private int pendingDeliveries;
     private int deliveryCompleted;
     private int deliveryFailed;
 
-    public DeliveryMan(String name, String username, String password, String email, String phone, String drivingLicenseNo, String carNumber, String salary) {
-        this.name = name;
-        this.username = username;
-        setPassword(password);
-        this.email = email;
-        this.phone = phone;
-        this.drivingLicenseNo = drivingLicenseNo;
-        this.carNumber = carNumber;
-        this.salary = salary;
+
+    public DeliveryMan() {
         this.deliveries = new ArrayList();
         this.deliveryCompleted = 0;
         this.deliveryFailed = 0;
+        this.pendingDeliveries = 0;
+    }
+
+    public int getPendingDeliveries() {
+        return pendingDeliveries;
+    }
+
+    public void setPendingDeliveries(int pendingDeliveries) {
+        this.pendingDeliveries = pendingDeliveries;
     }
 
     public Document toDocument() {

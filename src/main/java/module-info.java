@@ -6,6 +6,7 @@ module com.infrareddeliverysystem {
     requires org.mongodb.bson;
     requires org.mongodb.driver.core;
     requires jbcrypt;
+    requires java.net.http;
 
 
     opens com.infrareddeliverysystem.controllers to javafx.fxml;

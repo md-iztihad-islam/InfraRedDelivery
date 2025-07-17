@@ -33,9 +33,10 @@
                 <TextField fx:id="receiverPhone" layoutX="130.0" layoutY="256.0" promptText="Receiver Phone" />
                 <Label layoutX="30.0" layoutY="300.0" text="Address" />
                 <TextField fx:id="receiverAddress" layoutX="130.0" layoutY="296.0" promptText="Address" />
-                <Button fx:id="menuButton" layoutX="150.0" layoutY="340.0" onAction="#goTakeParcelNextPage" text="Next" />
+<!--                <Button fx:id="menuButton" layoutX="150.0" layoutY="340.0" onAction="#goTakeParcelNextPage" text="Next" />-->
             </children>
         </AnchorPane>
         <Button fx:id="menuButton" layoutX="553.0" layoutY="441.0" onAction="#switchToOffice" text="Back" />
+      <Button layoutX="545.0" layoutY="342.0" mnemonicParsing="false" onAction="#goTakeParcelNextPage" text="Next" />
     </children>
 </AnchorPane>

@@ -1,0 +1,41 @@
+package com.infrareddeliverysystem.controllers;
+
+import com.infrareddeliverysystem.Main;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+public class ParcelIDInputOffice {
+    @FXML
+    private TextField parcelID;
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
+    public void switchToTracking(ActionEvent event) throws IOException {
+        String id = parcelID.getText();
+        System.out.println("Parcel ID: " + id);
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/TrackParcelOffice.fxml"));
+        root = fxmlLoader.load();
+
+        TrackParcelOfficeController trackParcelOfficeController = fxmlLoader.getController();
+        trackParcelOfficeController.setParcelID(id);
+
+
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Admin Login Page");
+        stage.show();
+    }
+
+}
