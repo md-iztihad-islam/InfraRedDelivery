@@ -19,8 +19,17 @@ import javafx.stage.Stage;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
+import java.net.http.HttpClient;
+import java.net.http.HttpHeaders;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class TrackParcelCustomerController implements Initializable {
@@ -59,10 +68,8 @@ public class TrackParcelCustomerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Apply initial styling to circles
         resetCircleStyling();
 
-        // Set up button actions if needed
         if (chat != null) {
             chat.setOnAction(event -> handleChatRequest());
         }
@@ -80,7 +87,6 @@ public class TrackParcelCustomerController implements Initializable {
     @FXML
     private void handlePayment() {
         System.out.println("Payment requested for parcel: " + parcelID);
-        // Implement payment functionality here
 
         if (parcelID != null) {
             try {
@@ -90,6 +96,9 @@ public class TrackParcelCustomerController implements Initializable {
                         new Document("_id", new ObjectId(parcelID)),
                         new Document("$set", new Document("isPaid", true))
                 );
+
+                String paymentUrl = "http://localhost:5173/" + parcelID;
+                openPaymentGateway(paymentUrl);
 
                 paymentStatus.setText("Paid");
                 if (pay != null) {
@@ -101,8 +110,20 @@ public class TrackParcelCustomerController implements Initializable {
         }
     }
 
+    private void openPaymentGateway(String url) {
+        try {
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = Desktop.getDesktop();
+                desktop.browse(new URI(url));
+            } else {
+                System.out.println("Desktop is not supported. Cannot open the browser.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void resetCircleStyling() {
-        // Remove any existing styling
         atOurWareHouse.getStyleClass().removeAll("active-circle");
         deliveryManAssigned.getStyleClass().removeAll("active-circle");
         onYourWay.getStyleClass().removeAll("active-circle");
@@ -140,7 +161,6 @@ public class TrackParcelCustomerController implements Initializable {
             return;
         }
 
-        // Update UI with parcel details
         parDes.setText(parcelDetails.getString("parcelDescription"));
         dmNameDelivery.setText(deliveryManDetails.getString("name"));
 
@@ -162,10 +182,9 @@ public class TrackParcelCustomerController implements Initializable {
             if (pay != null) pay.setDisable(false);
         }
 
-        // Reset styling before applying new status
+
         resetCircleStyling();
 
-        // Handle delivery status with CSS classes instead of direct color setting
         boolean isDelivered = parcelDetails.getBoolean("isDelivered", false);
         if (isDelivered) {
             atOurWareHouse.getStyleClass().add("active-circle");
