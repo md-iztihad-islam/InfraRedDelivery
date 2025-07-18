@@ -5,17 +5,17 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="409.0" prefWidth="625.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.infrareddeliverysystem.controllers.TakeParcelController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.infrareddeliverysystem.controllers.TakeParcelController">
     <children>
-        <AnchorPane fx:id="top_bar" layoutX="-1.0" prefHeight="85.0" prefWidth="629.0">
+        <AnchorPane fx:id="top_bar" layoutY="-10.0" prefHeight="136.0" prefWidth="800.0">
             <children>
-                <Label fx:id="title_label" layoutX="14.0" layoutY="15.0" text="InfraRed Courier Delivery System" />
-                <Button fx:id="menuButton" layoutX="324.0" layoutY="27.0" onAction="#onHomeButton" text="Home" />
-                <Button fx:id="menuButton" layoutX="422.0" layoutY="27.0" onAction="#onAdminButton" text="Admin" />
-                <Button fx:id="menuButton" layoutX="525.0" layoutY="27.0" onAction="#onStaffButton" text="Staff" />
+                <Label fx:id="title_label" layoutY="41.0" text="InfraRed Courier Delivery System" />
+                <Button fx:id="menuButton" alignment="CENTER" layoutX="356.0" layoutY="43.0" onAction="#onHomeButton" prefHeight="48.0" prefWidth="87.0" text="Home" wrapText="true" />
+                <Button fx:id="menuButton" alignment="CENTER" layoutX="503.0" layoutY="43.0" onAction="#onAdminButton" prefHeight="48.0" prefWidth="87.0" text="Admin" textAlignment="CENTER" />
+                <Button fx:id="menuButton" alignment="CENTER" layoutX="644.0" layoutY="43.0" onAction="#onStaffButton" prefHeight="48.0" prefWidth="87.0" text="Staff" />
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="form_field" layoutX="123.0" layoutY="92.0" prefHeight="316.0" prefWidth="387.0">
+        <AnchorPane fx:id="form_field" layoutX="199.0" layoutY="148.0" prefHeight="260.0" prefWidth="400.0">
             <children>
                 <Label layoutX="17.0" layoutY="26.0" text="Description" />
                 <TextField fx:id="description" layoutX="130.0" layoutY="16.0" promptText="Description" />
@@ -33,10 +33,9 @@
                 <TextField fx:id="receiverPhone" layoutX="130.0" layoutY="256.0" promptText="Receiver Phone" />
                 <Label layoutX="30.0" layoutY="300.0" text="Address" />
                 <TextField fx:id="receiverAddress" layoutX="130.0" layoutY="296.0" promptText="Address" />
-<!--                <Button fx:id="menuButton" layoutX="150.0" layoutY="340.0" onAction="#goTakeParcelNextPage" text="Next" />-->
             </children>
         </AnchorPane>
-        <Button fx:id="menuButton" layoutX="553.0" layoutY="441.0" onAction="#switchToOffice" text="Back" />
-      <Button layoutX="545.0" layoutY="342.0" mnemonicParsing="false" onAction="#goTakeParcelNextPage" text="Next" />
+        <Button fx:id="menuButton" layoutX="680.0" layoutY="521.0" onAction="#switchToOffice" prefHeight="48.0" prefWidth="87.0" text="Back" />
+        <Button layoutX="359.0" layoutY="524.0" mnemonicParsing="false" onAction="#goTakeParcelNextPage" prefHeight="48.0" prefWidth="115.0" text="Next" />
     </children>
 </AnchorPane>

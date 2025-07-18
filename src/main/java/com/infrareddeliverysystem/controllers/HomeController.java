@@ -90,6 +90,17 @@ public class HomeController {
         stage.setTitle("Admin Login Page");
         stage.show();
     }
+    @FXML
+    public void onTrackParcelCustomer(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/ParcelIDInput.fxml"));
+        root = fxmlLoader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Track Parcel Customer Page");
+        stage.show();
+    }
+
 
 
 }
