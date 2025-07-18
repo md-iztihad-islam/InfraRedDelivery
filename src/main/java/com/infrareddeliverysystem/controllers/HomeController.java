@@ -41,6 +41,28 @@ public class HomeController {
     }
 
     @FXML
+    public void switchToTrackingID(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/ParcelIDInput.fxml"));
+        root = fxmlLoader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Admin Login Page");
+        stage.show();
+    }
+
+    @FXML
+    public void switchToDeliveryManLogin(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/deliveryManLogin.fxml"));
+        root = fxmlLoader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Admin Login Page");
+        stage.show();
+    }
+
+    @FXML
     public void onHomeButton(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/home.fxml"));
         root = loader.load();
@@ -79,17 +101,4 @@ public class HomeController {
         tt.setInterpolator(javafx.animation.Interpolator.EASE_OUT);
         tt.play();
     }
-
-    @FXML
-    public void switchToTrackingID(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/ParcelIDInput.fxml"));
-        root = fxmlLoader.load();
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("Admin Login Page");
-        stage.show();
-    }
-
-
 }

@@ -11,7 +11,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.infrareddeliverysystem.controllers.HomeController">
     <children>
         <Button fx:id="menuButton" layoutX="117.0" layoutY="327.0" mnemonicParsing="false" onAction="#switchToAdminLogin" stylesheets="@style.css" text="Office" />
-        <Button fx:id="menuButton" layoutX="261.0" layoutY="327.0" mnemonicParsing="false" stylesheets="@style.css" text="Delivery Man" />
+        <Button fx:id="menuButton" layoutX="261.0" layoutY="327.0" mnemonicParsing="false" onAction="#switchToDeliveryManLogin" stylesheets="@style.css" text="Delivery Man" />
         <Button fx:id="menuButton" layoutX="434.0" layoutY="327.0" mnemonicParsing="false" onAction="#switchToTrackingID" stylesheets="@style.css" text="Customer" />
       <ImageView fitHeight="222.0" fitWidth="641.0" layoutY="76.0" opacity="0.3" pickOnBounds="true">
          <image>

@@ -55,6 +55,8 @@ public class Parcel {
         parcelDocument.put("totalCharge", totalCharge);
         parcelDocument.put("whereAt", whereAt);
         parcelDocument.put("estimatedDeliveryDate", estimatedDeliveryDate);
+        parcelDocument.put("isPaid", isPaid);
+        parcelDocument.put("isDelivered", isDelivered);
         return parcelDocument;
     }
 

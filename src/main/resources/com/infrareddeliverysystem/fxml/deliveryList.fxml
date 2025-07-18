@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.infrareddeliverysystem.controllers.DeliveryListController">
+   <children>
+      <ListView fx:id="parcelList" layoutX="33.0" layoutY="100.0" prefHeight="282.0" prefWidth="542.0" />
+      <Label layoutX="226.0" layoutY="68.0" text="LIST OF PENDING DELIVERIES" />
+   </children>
+</AnchorPane>

@@ -2,7 +2,6 @@ package com.infrareddeliverysystem.controllers;
 
 import com.infrareddeliverysystem.Main;
 import com.infrareddeliverysystem.db.MongodbConnection;
-import com.infrareddeliverysystem.models.Parcel;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import javafx.event.ActionEvent;
@@ -20,7 +19,7 @@ import org.bson.types.ObjectId;
 
 import java.io.IOException;
 
-public class TrackParcelOfficeController {
+public class DeliveryController {
 
     private Stage stage;
     private Scene scene;
@@ -30,9 +29,15 @@ public class TrackParcelOfficeController {
     private Document parcelDetails;
 
     @FXML
-    private Label parDes;
+    private Label senderName;
     @FXML
-    private Label dmName;
+    private Label receiverName;
+    @FXML
+    private Label receiverPhone;
+    @FXML
+    private Label address;
+    @FXML
+    private Label parDes;
     @FXML
     private Label total;
     @FXML
@@ -81,8 +86,13 @@ public class TrackParcelOfficeController {
             return;
         }
 
+        System.out.println("Sender Name: " + parcelDetails.getString("senderName"));
+        System.out.println("Receiver Name: " + parcelDetails.getString("receiverName"));
+        senderName.setText(parcelDetails.getString("senderName"));
+        receiverName.setText(parcelDetails.getString("receiverName"));
+        receiverPhone.setText(parcelDetails.getString("receiverPhone"));
+        address.setText(parcelDetails.getString("receiverAddress"));
         parDes.setText(parcelDetails.getString("parcelDescription"));
-        dmName.setText(deliveryManDetails.getString("name"));
         Object totalChargeObj = parcelDetails.get("totalCharge");
         if (totalChargeObj instanceof Integer) {
             total.setText(String.valueOf((Integer) totalChargeObj));  // Convert Integer to String
@@ -122,6 +132,14 @@ public class TrackParcelOfficeController {
             deliveryManAssigned.setFill(javafx.scene.paint.Color.GREEN);
             onYourWay.setFill(javafx.scene.paint.Color.GREEN);
             progressBar.setProgress(0.75);
+        }else if( status.equals("Delivered")) {
+            atOurWareHouse.setFill(javafx.scene.paint.Color.GREEN);
+            deliveryManAssigned.setFill(javafx.scene.paint.Color.GREEN);
+            onYourWay.setFill(javafx.scene.paint.Color.GREEN);
+            delivered.setFill(javafx.scene.paint.Color.GREEN);
+            progressBar.setProgress(1);
+        } else {
+            System.out.println("Unknown status: " + status);
         }
 
 
@@ -138,19 +156,6 @@ public class TrackParcelOfficeController {
         parcelCollection.updateOne(new Document("_id", new ObjectId(parcelID)), updateDoc);
 
         System.out.println("Parcel status updated to: " + status);
-    }
-
-    public void atOurWareHouse(){
-        atOurWareHouse.setFill(javafx.scene.paint.Color.GREEN);
-        progressBar.setProgress(0.25);
-    }
-
-    public void deliveryManAssigned(){
-        atOurWareHouse.setFill(javafx.scene.paint.Color.GREEN);
-        deliveryManAssigned.setFill(javafx.scene.paint.Color.GREEN);
-        progressBar.setProgress(0.50);
-
-        updateParcelStatus("Delivery Man Assigned");
     }
 
     public void onYourWay(){
@@ -175,6 +180,8 @@ public class TrackParcelOfficeController {
         Document updateDoc = new Document("$set", new Document("isDelivered", true));
 
         parcelCollection.updateOne(new Document("_id", new ObjectId(parcelID)), updateDoc);
+
+
 
         updateParcelStatus("Delivered");
     }

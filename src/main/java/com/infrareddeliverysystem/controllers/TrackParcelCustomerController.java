@@ -120,6 +120,12 @@ public class TrackParcelCustomerController {
             deliveryManAssigned.setFill(javafx.scene.paint.Color.GREEN);
             onYourWay.setFill(javafx.scene.paint.Color.GREEN);
             progressBar.setProgress(0.75);
+        } else if (status.equals("Delivered")) {
+            atOurWareHouse.setFill(javafx.scene.paint.Color.GREEN);
+            deliveryManAssigned.setFill(javafx.scene.paint.Color.GREEN);
+            onYourWay.setFill(javafx.scene.paint.Color.GREEN);
+            delivered.setFill(javafx.scene.paint.Color.GREEN);
+            progressBar.setProgress(1);
         }
 
 

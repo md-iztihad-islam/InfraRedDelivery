@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import java.io.IOException;
 
@@ -57,6 +58,10 @@ public class deliveryManLoginController {
 
             Document query = new Document("username", userName);
             Document data = collection.find(query).first();
+            ObjectId deliveryManId = data.getObjectId("_id");
+
+
+//            System.out.print("Querying for user: " + deliveryManId.toString());
 
             if (data != null) {
                 String storedPasswordHash = data.getString("password");
@@ -68,7 +73,18 @@ public class deliveryManLoginController {
                     alert.setContentText("Welcome, " + userName + "!");
                     alert.showAndWait();
 
-                    switchToOffice(event);
+                    FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/deliveryList.fxml"));
+                    root = fxmlLoader.load();
+
+                    DeliveryListController deliveryListController = fxmlLoader.getController();
+                    deliveryListController.setDeliveryManId(deliveryManId);
+
+
+                    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.setTitle("Delivery Man Page");
+                    stage.show();
                 }
             } else {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
