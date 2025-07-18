@@ -3,13 +3,42 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="parcelId" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.infrareddeliverysystem.controllers.ParcelIDInputOffice">
+<AnchorPane fx:id="parcelId" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.infrareddeliverysystem.controllers.ParcelIDInputOffice">
    <children>
-      <Label layoutX="247.0" layoutY="75.0" text="Enter Your Parcel ID" />
-      <TextField fx:id="parcelID" layoutX="109.0" layoutY="175.0" prefHeight="26.0" prefWidth="422.0" promptText="Parcel ID" />
-      <Button layoutX="274.0" layoutY="240.0" mnemonicParsing="false" onAction="#switchToTracking" text="Track" />
+      <AnchorPane fx:id="top_bar" layoutY="-10.0" prefHeight="136.0" prefWidth="800.0" stylesheets="@style.css">
+         <children>
+            <Label fx:id="title_label" layoutY="41.0" stylesheets="@style.css" text="InfraRed Courier Management System" />
+            <Button fx:id="menuButton" alignment="CENTER" layoutX="356.0" layoutY="43.0" mnemonicParsing="false" onAction="#onHomeButton" prefHeight="48.0" prefWidth="87.0" stylesheets="@style.css" text="Home" wrapText="true" />
+            <Button fx:id="menuButton" alignment="CENTER" layoutX="503.0" layoutY="43.0" mnemonicParsing="false" onAction="#onAdminButton" prefHeight="48.0" prefWidth="87.0" stylesheets="@style.css" text="Admin" textAlignment="CENTER" />
+            <Button fx:id="menuButton" alignment="CENTER" layoutX="644.0" layoutY="43.0" mnemonicParsing="false" onAction="#onStaffButton" prefHeight="48.0" prefWidth="87.0" stylesheets="@style.css" text="Staff" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="200.0" layoutY="180.0" prefHeight="260.0" prefWidth="400.0" stylesheets="@style.css">
+         <effect>
+            <DropShadow color="#e0f7ef" radius="20" />
+         </effect>
+         <children>
+            <VBox alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="260.0" prefWidth="400.0" spacing="24.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="400.0" stylesheets="@style.css" text="Enter Your Parcel ID">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="parcelID" prefHeight="40.0" prefWidth="320.0" promptText="Parcel ID" style="-fx-font-size: 18px;" />
+                  <Button mnemonicParsing="false" onAction="#switchToTracking" prefHeight="48.0" prefWidth="160.0" style="-fx-font-size: 20px; -fx-background-color: #2e8b57; -fx-text-fill: white;" stylesheets="@style.css" text="Track">
+                     <effect>
+                        <DropShadow color="#e0f7ef" radius="20" />
+                     </effect>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

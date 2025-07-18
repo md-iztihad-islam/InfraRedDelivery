@@ -7,9 +7,11 @@ import com.mongodb.client.MongoDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.shape.Circle;
@@ -18,8 +20,10 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class TrackParcelCustomerController {
+public class TrackParcelCustomerController implements Initializable {
 
     private Stage stage;
     private Scene scene;
@@ -30,13 +34,13 @@ public class TrackParcelCustomerController {
     @FXML
     private Label parDes;
     @FXML
-    private Label dmName;
+    private Label dmNameDelivery;
     @FXML
     private Label total;
     @FXML
     private Label paymentStatus;
     @FXML
-    private Label deliveryDate;
+    private Label deliveryDateParcel;
     @FXML
     private Circle atOurWareHouse;
     @FXML
@@ -47,6 +51,63 @@ public class TrackParcelCustomerController {
     private Circle delivered;
     @FXML
     private ProgressBar progressBar;
+    @FXML
+    private Button chat;
+    @FXML
+    private Button pay;
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Apply initial styling to circles
+        resetCircleStyling();
+
+        // Set up button actions if needed
+        if (chat != null) {
+            chat.setOnAction(event -> handleChatRequest());
+        }
+
+        if (pay != null) {
+            pay.setOnAction(event -> handlePayment());
+        }
+    }
+
+    private void handleChatRequest() {
+        System.out.println("Chat requested for parcel: " + parcelID);
+        // Implement chat functionality here
+    }
+
+    @FXML
+    private void handlePayment() {
+        System.out.println("Payment requested for parcel: " + parcelID);
+        // Implement payment functionality here
+
+        if (parcelID != null) {
+            try {
+                MongoDatabase database = MongodbConnection.getDatabase("MainDB");
+                MongoCollection<Document> parcels = database.getCollection("Parcels");
+                parcels.updateOne(
+                        new Document("_id", new ObjectId(parcelID)),
+                        new Document("$set", new Document("isPaid", true))
+                );
+
+                paymentStatus.setText("Paid");
+                if (pay != null) {
+                    pay.setDisable(true);
+                }
+            } catch (Exception e) {
+                System.err.println("Payment update failed: " + e.getMessage());
+            }
+        }
+    }
+
+    private void resetCircleStyling() {
+        // Remove any existing styling
+        atOurWareHouse.getStyleClass().removeAll("active-circle");
+        deliveryManAssigned.getStyleClass().removeAll("active-circle");
+        onYourWay.getStyleClass().removeAll("active-circle");
+        delivered.getStyleClass().removeAll("active-circle");
+    }
 
     @FXML
     public void setParcelID(String parcelID) {
@@ -79,56 +140,68 @@ public class TrackParcelCustomerController {
             return;
         }
 
+        // Update UI with parcel details
         parDes.setText(parcelDetails.getString("parcelDescription"));
-        dmName.setText(deliveryManDetails.getString("name"));
+        dmNameDelivery.setText(deliveryManDetails.getString("name"));
+
         Object totalChargeObj = parcelDetails.get("totalCharge");
         if (totalChargeObj instanceof Integer) {
-            total.setText(String.valueOf((Integer) totalChargeObj));  // Convert Integer to String
+            total.setText(String.valueOf((Integer) totalChargeObj));
         } else if (totalChargeObj instanceof Double) {
-            total.setText(String.valueOf((Double) totalChargeObj));  // Convert Double to String
+            total.setText(String.valueOf((Double) totalChargeObj));
         }
-        deliveryDate.setText(parcelDetails.getString("estimatedDeliveryDate"));
+
+        deliveryDateParcel.setText(parcelDetails.getString("estimatedDeliveryDate"));
 
         boolean isPaid = parcelDetails.getBoolean("isPaid", false);
         if (isPaid) {
             paymentStatus.setText("Paid");
+            if (pay != null) pay.setDisable(true);
         } else {
             paymentStatus.setText("Not Paid");
+            if (pay != null) pay.setDisable(false);
         }
 
+        // Reset styling before applying new status
+        resetCircleStyling();
+
+        // Handle delivery status with CSS classes instead of direct color setting
         boolean isDelivered = parcelDetails.getBoolean("isDelivered", false);
-
         if (isDelivered) {
-            atOurWareHouse.setFill(javafx.scene.paint.Color.GREEN);
-            deliveryManAssigned.setFill(javafx.scene.paint.Color.GREEN);
-            onYourWay.setFill(javafx.scene.paint.Color.GREEN);
-            delivered.setFill(javafx.scene.paint.Color.GREEN);
+            atOurWareHouse.getStyleClass().add("active-circle");
+            deliveryManAssigned.getStyleClass().add("active-circle");
+            onYourWay.getStyleClass().add("active-circle");
+            delivered.getStyleClass().add("active-circle");
             progressBar.setProgress(1);
+        } else {
+            String status = parcelDetails.getString("status");
+            updateTrackingStatus(status);
         }
+    }
 
-        String status = parcelDetails.getString("status");
+    // Update tracking using CSS classes instead of direct color manipulation
+    private void updateTrackingStatus(String status) {
+        if (status == null) return;
 
-        if(status.equals("At our Warehouse")) {
-            atOurWareHouse.setFill(javafx.scene.paint.Color.GREEN);
-            progressBar.setProgress(0.25);
-        } else if (status.equals("Delivery Man Assigned")) {
-            atOurWareHouse.setFill(javafx.scene.paint.Color.GREEN);
-            deliveryManAssigned.setFill(javafx.scene.paint.Color.GREEN);
-            progressBar.setProgress(0.50);
-        } else if (status.equals("On the way")) {
-            atOurWareHouse.setFill(javafx.scene.paint.Color.GREEN);
-            deliveryManAssigned.setFill(javafx.scene.paint.Color.GREEN);
-            onYourWay.setFill(javafx.scene.paint.Color.GREEN);
-            progressBar.setProgress(0.75);
-        } else if (status.equals("Delivered")) {
-            atOurWareHouse.setFill(javafx.scene.paint.Color.GREEN);
-            deliveryManAssigned.setFill(javafx.scene.paint.Color.GREEN);
-            onYourWay.setFill(javafx.scene.paint.Color.GREEN);
-            delivered.setFill(javafx.scene.paint.Color.GREEN);
-            progressBar.setProgress(1);
+        switch (status) {
+            case "At our Warehouse":
+                atOurWareHouse.getStyleClass().add("active-circle");
+                progressBar.setProgress(0.25);
+                break;
+
+            case "Delivery Man Assigned":
+                atOurWareHouse.getStyleClass().add("active-circle");
+                deliveryManAssigned.getStyleClass().add("active-circle");
+                progressBar.setProgress(0.50);
+                break;
+
+            case "On the way":
+                atOurWareHouse.getStyleClass().add("active-circle");
+                deliveryManAssigned.getStyleClass().add("active-circle");
+                onYourWay.getStyleClass().add("active-circle");
+                progressBar.setProgress(0.75);
+                break;
         }
-
-
     }
 
     @FXML
