@@ -38,7 +38,7 @@ public class deliveryManLoginController {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Delivery Man Page");
+        stage.setTitle("Office Page");
         stage.show();
     }
 

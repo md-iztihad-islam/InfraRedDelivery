@@ -22,7 +22,7 @@ public class ParcelIDInput {
 
     public void switchToTracking(ActionEvent event) throws IOException {
         String id = parcelID.getText();
-        System.out.println("Parcel ID: " + id);
+//        System.out.println("Parcel ID: " + id);
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/TrackParcelCustomer.fxml"));
         root = fxmlLoader.load();
@@ -34,7 +34,7 @@ public class ParcelIDInput {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Admin Login Page");
+        stage.setTitle("Order Tracking Page");
         stage.show();
     }
     @FXML

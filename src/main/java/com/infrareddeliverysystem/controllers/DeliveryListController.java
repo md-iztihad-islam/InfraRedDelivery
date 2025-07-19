@@ -58,12 +58,10 @@ public class DeliveryListController {
 
 
         parcelList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            // When an item is selected, store the selected parcel ID
-            deliveryId = newValue; // The selected parcel ID
-            System.out.println("Selected Parcel ID: " + deliveryId);
+            deliveryId = newValue;
+//            System.out.println("Selected Parcel ID: " + deliveryId);
             try {
-                // Trigger the switch to the delivery screen
-                switchToDelivery(null); // Call the method to switch scene
+                switchToDelivery(null);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -78,8 +76,6 @@ public class DeliveryListController {
 
         DeliveryController deliveryController = loader.getController();
         deliveryController.setParcelID(deliveryIdString);
-
-
 
         Stage stage = (Stage) parcelList.getScene().getWindow();
         Scene scene = new Scene(root);
@@ -104,10 +100,9 @@ public class DeliveryListController {
 
         if (data != null) {
             String deliveryManUsername = data.getString("username");
-            System.out.println("Querying for user: " + deliveryManUsername);
+//            System.out.println("Querying for user: " + deliveryManUsername);
 
             loadPendingParcels();
-
 
         }
     }

@@ -33,14 +33,4 @@ public class MongodbConnection {
         return database.getCollection(collectionName);
     }
 
-    public static boolean pingServer() {
-        try (MongoClient client = getClient()) {
-            client.getDatabase("admin").runCommand(new Document("ping", 1));
-            return true;
-        } catch (Exception e) {
-            System.err.println("Ping failed: " + e.getMessage());
-            return false;
-        }
-    }
-
 }

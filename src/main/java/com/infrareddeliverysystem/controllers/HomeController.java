@@ -16,10 +16,6 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
-import javafx.animation.TranslateTransition;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.util.Duration;
 
 public class HomeController {
     public Button menuButton;
@@ -47,7 +43,7 @@ public class HomeController {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Admin Login Page");
+        stage.setTitle("Tracking ID Page");
         stage.show();
     }
 
@@ -58,7 +54,7 @@ public class HomeController {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Admin Login Page");
+        stage.setTitle("Delivery Man Login Page");
         stage.show();
     }
 
@@ -95,9 +91,9 @@ public class HomeController {
 
     @FXML
     public void initialize() {
-        homeLabel.setTranslateX(-600); // Start off-screen to the left
+        homeLabel.setTranslateX(-600);
         TranslateTransition tt = new TranslateTransition(Duration.seconds(2), homeLabel);
-        tt.setToX(0); // Move to center
+        tt.setToX(0);
         tt.setInterpolator(javafx.animation.Interpolator.EASE_OUT);
         tt.play();
     }

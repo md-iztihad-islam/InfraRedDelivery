@@ -1,7 +1,6 @@
 package com.infrareddeliverysystem.controllers;
 
 import com.infrareddeliverysystem.Main;
-import com.infrareddeliverysystem.db.MongodbConnection;
 import com.infrareddeliverysystem.models.DeliveryMan;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,10 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.bson.Document;
 
 import java.io.IOException;
 
@@ -31,12 +28,7 @@ public class RegisterDeliveryManController {
     private TextField dmEmail;
     @FXML
     private TextField dmPhone;
-    @FXML
-    private TextField dmDrivingLicense;
-    @FXML
-    private TextField dmCarNumber;
-    @FXML
-    private TextField dmSalary;
+
 
     private final DeliveryMan deliveryMan = new DeliveryMan();
 
@@ -48,7 +40,7 @@ public class RegisterDeliveryManController {
         String email = dmEmail.getText();
         String phone = dmPhone.getText();
 
-        System.out.println("User entered " + name + " " + username + " " + password + " " + email + " " + phone);
+//        System.out.println("User entered " + name + " " + username + " " + password + " " + email + " " + phone);
 
         deliveryMan.setName(name);
         deliveryMan.setUsername(username);
@@ -71,28 +63,6 @@ public class RegisterDeliveryManController {
         stage.show();
     }
 
-//    @FXML
-//    public void deliveryManRegistration(ActionEvent event) {
-//
-//        String drivingLicenseNo = dmDrivingLicense.getText();
-//        String carNumber = dmCarNumber.getText();
-//        String salary = dmSalary.getText();
-//
-//        deliveryMan.setDrivingLicenseNo(drivingLicenseNo);
-//        deliveryMan.setCarNumber(carNumber);
-//        deliveryMan.setSalary(salary);
-//
-//        System.out.println("Name: " + deliveryMan.getName());
-//        System.out.println("Salary: " + deliveryMan.getSalary());
-//        Document deliveryManDoc = deliveryMan.toDocument();
-//
-//        MongodbConnection.getCollection("MainDB", "DeliveryMan").insertOne(deliveryManDoc);
-//
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle("Registration Success");
-//        alert.setHeaderText("Registration Success");
-//        alert.showAndWait();
-//    }
 
     @FXML
     public void switchToOffice(ActionEvent event) throws IOException {

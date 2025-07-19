@@ -73,7 +73,7 @@ public class DeliveryController {
             return;
         }
 
-        System.out.println("Fetched Parcel Details: " + parcelDetails.toJson());
+//        System.out.println("Fetched Parcel Details: " + parcelDetails.toJson());
 
         String deliveryManIdStr = parcelDetails.getString("deliveryManId");
         ObjectId deliveryManId = new ObjectId(deliveryManIdStr);
@@ -86,8 +86,8 @@ public class DeliveryController {
             return;
         }
 
-        System.out.println("Sender Name: " + parcelDetails.getString("senderName"));
-        System.out.println("Receiver Name: " + parcelDetails.getString("receiverName"));
+//        System.out.println("Sender Name: " + parcelDetails.getString("senderName"));
+//        System.out.println("Receiver Name: " + parcelDetails.getString("receiverName"));
         senderName.setText(parcelDetails.getString("senderName"));
         receiverName.setText(parcelDetails.getString("receiverName"));
         receiverPhone.setText(parcelDetails.getString("receiverPhone"));
@@ -95,9 +95,9 @@ public class DeliveryController {
         parDes.setText(parcelDetails.getString("parcelDescription"));
         Object totalChargeObj = parcelDetails.get("totalCharge");
         if (totalChargeObj instanceof Integer) {
-            total.setText(String.valueOf((Integer) totalChargeObj));  // Convert Integer to String
+            total.setText(String.valueOf((Integer) totalChargeObj));
         } else if (totalChargeObj instanceof Double) {
-            total.setText(String.valueOf((Double) totalChargeObj));  // Convert Double to String
+            total.setText(String.valueOf((Double) totalChargeObj));
         }
         deliveryDate.setText(parcelDetails.getString("estimatedDeliveryDate"));
 
@@ -149,13 +149,11 @@ public class DeliveryController {
         MongoDatabase database = MongodbConnection.getDatabase("MainDB");
         MongoCollection<Document> parcelCollection = database.getCollection("Parcels");
 
-        // Create an update document to update the status field
         Document updateDoc = new Document("$set", new Document("status", status));
 
-        // Update the parcel status in MongoDB
         parcelCollection.updateOne(new Document("_id", new ObjectId(parcelID)), updateDoc);
 
-        System.out.println("Parcel status updated to: " + status);
+//        System.out.println("Parcel status updated to: " + status);
     }
 
     public void onYourWay(){
@@ -180,8 +178,6 @@ public class DeliveryController {
         Document updateDoc = new Document("$set", new Document("isDelivered", true));
 
         parcelCollection.updateOne(new Document("_id", new ObjectId(parcelID)), updateDoc);
-
-
 
         updateParcelStatus("Delivered");
     }

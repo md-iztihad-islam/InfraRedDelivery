@@ -68,7 +68,7 @@ public class TrackParcelOfficeController implements Initializable {
     @FXML
     public void setParcelID(String parcelID) {
         this.parcelID = parcelID;
-        System.out.println("Parcel ID set: " + this.parcelID);
+//        System.out.println("Parcel ID set: " + this.parcelID);
         fetchParcelDetails();
     }
 
@@ -83,7 +83,7 @@ public class TrackParcelOfficeController implements Initializable {
             return;
         }
 
-        System.out.println("Fetched Parcel Details: " + parcelDetails.toJson());
+//        System.out.println("Fetched Parcel Details: " + parcelDetails.toJson());
 
         String deliveryManIdStr = parcelDetails.getString("deliveryManId");
         ObjectId deliveryManId = new ObjectId(deliveryManIdStr);
@@ -147,7 +147,7 @@ public class TrackParcelOfficeController implements Initializable {
         Document updateDoc = new Document("$set", new Document("status", status));
         parcelCollection.updateOne(new Document("_id", new ObjectId(parcelID)), updateDoc);
 
-        System.out.println("Parcel status updated to: " + status);
+//        System.out.println("Parcel status updated to: " + status);
     }
 
     public void atOurWareHouse(){

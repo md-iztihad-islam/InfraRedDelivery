@@ -23,13 +23,6 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
-import java.net.http.HttpClient;
-import java.net.http.HttpHeaders;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.Duration;
-import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 public class TrackParcelCustomerController implements Initializable {
@@ -81,7 +74,6 @@ public class TrackParcelCustomerController implements Initializable {
 
     private void handleChatRequest() {
         System.out.println("Chat requested for parcel: " + parcelID);
-        // Implement chat functionality here
     }
 
     @FXML
@@ -133,7 +125,7 @@ public class TrackParcelCustomerController implements Initializable {
     @FXML
     public void setParcelID(String parcelID) {
         this.parcelID = parcelID;
-        System.out.println("Parcel ID set: " + this.parcelID);
+//        System.out.println("Parcel ID set: " + this.parcelID);
         fetchParcelDetails();
     }
 
@@ -148,7 +140,7 @@ public class TrackParcelCustomerController implements Initializable {
             return;
         }
 
-        System.out.println("Fetched Parcel Details: " + parcelDetails.toJson());
+//        System.out.println("Fetched Parcel Details: " + parcelDetails.toJson());
 
         String deliveryManIdStr = parcelDetails.getString("deliveryManId");
         ObjectId deliveryManId = new ObjectId(deliveryManIdStr);
@@ -198,7 +190,6 @@ public class TrackParcelCustomerController implements Initializable {
         }
     }
 
-    // Update tracking using CSS classes instead of direct color manipulation
     private void updateTrackingStatus(String status) {
         if (status == null) return;
 

@@ -2,9 +2,7 @@ package com.infrareddeliverysystem.controllers;
 
 import com.infrareddeliverysystem.Main;
 import com.infrareddeliverysystem.db.MongodbConnection;
-import com.infrareddeliverysystem.models.DeliveryMan;
 import com.infrareddeliverysystem.models.Parcel;
-import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
@@ -36,7 +34,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 
 public class TakeParcelNextController {
@@ -130,12 +127,10 @@ public class TakeParcelNextController {
                     parcel.getEstimatedDeliveryDate()
             );
 
-            // Prepare the SMS API request
-            String apiKey = "1B2DvxXzsprXTkUQEsEr"; // Replace with your actual API key
-            String senderId = "8809617611758"; // Replace with your sender ID
-            String phoneNumber = parcel.getReceiverPhone(); // Make sure this field exists in Parcel class
+            String apiKey = "1B2DvxXzsprXTkUQEsEr";
+            String senderId = "8809617611758";
+            String phoneNumber = parcel.getReceiverPhone();
 
-            // Create form parameters
             String formData = String.format(
                     "api_key=%s&type=text&number=%s&senderid=%s&message=%s",
                     URLEncoder.encode(apiKey, StandardCharsets.UTF_8),
@@ -144,7 +139,6 @@ public class TakeParcelNextController {
                     URLEncoder.encode(message, StandardCharsets.UTF_8)
             );
 
-            // Create and send HTTP request
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("http://bulksmsbd.net/api/smsapi"))
@@ -155,17 +149,14 @@ public class TakeParcelNextController {
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            // Log the response
-            System.out.println("SMS API Response: " + response.body());
+//            System.out.println("SMS API Response: " + response.body());
 
             if (response.statusCode() != 200) {
                 System.err.println("SMS sending failed with status: " + response.statusCode());
-                // You might want to show a warning to the user here
             }
 
         } catch (Exception e) {
             System.err.println("Failed to send SMS: " + e.getMessage());
-            // Optionally show a warning to the user
             Alert smsAlert = new Alert(Alert.AlertType.WARNING);
             smsAlert.setTitle("SMS Notification Failed");
             smsAlert.setHeaderText("Parcel registered successfully");

@@ -43,8 +43,8 @@ public class adminLoginController {
     public void adminLogin(ActionEvent event) throws IOException {
         String userName = adminLoginUserName.getText();
         String password = adminLoginPassword.getText();
-        System.out.println("userName: " + userName);
-        System.out.println("password: " + password);
+//        System.out.println("userName: " + userName);
+//        System.out.println("password: " + password);
         if (userName.isEmpty() && password.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Input Error");
@@ -57,8 +57,8 @@ public class adminLoginController {
 
             Document query = new Document("username", userName);
             Document data = collection.find(query).first();
-            System.out.println("username: " + data.get("username"));
-            System.out.println("password: " + data.get("password"));
+//            System.out.println("username: " + data.get("username"));
+//            System.out.println("password: " + data.get("password"));
 
             if (data != null) {
                 String storedPasswordHash = data.getString("password");
@@ -67,11 +67,10 @@ public class adminLoginController {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Login Success");
                     alert.setHeaderText(null);
-                    alert.setContentText("Welcome, " + userName + "!");
+                    alert.setContentText("Welcome, " + data.getString("name") + "!");
                     alert.showAndWait();
 
                     switchToOffice(event);
-
                 }
 
             } else {
@@ -112,7 +111,7 @@ public class adminLoginController {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Home Page");
+        stage.setTitle("Delivery Man Login Page");
         stage.show();
     }
 }

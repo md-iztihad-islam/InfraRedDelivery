@@ -10,7 +10,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -95,6 +94,10 @@ public class RegisterAdminController {
 
         MongodbConnection.getCollection("MainDB", "Admin").insertOne(adminDoc);
 
-        System.out.println("Successfully registered Admin");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Registration Successful");
+        alert.setHeaderText(null);
+        alert.setContentText("Admin registered successfully!");
+        alert.showAndWait();
     }
 }
