@@ -105,7 +105,7 @@ public class TrackParcelCustomerController implements Initializable {
                         new Document("$set", new Document("isPaid", true))
                 );
 
-                String paymentUrl = "http://localhost:5173/" + parcelID;
+                String paymentUrl = "https://payment-system-for-infra-red.vercel.app/" + parcelID;
                 openPaymentGateway(paymentUrl);
 
                 paymentStatus.setText("Paid");
