@@ -43,8 +43,8 @@ public class adminLoginController {
     public void adminLogin(ActionEvent event) throws IOException {
         String userName = adminLoginUserName.getText();
         String password = adminLoginPassword.getText();
-//        System.out.println("userName: " + userName);
-//        System.out.println("password: " + password);
+
+
         if (userName.isEmpty() && password.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Input Error");
@@ -57,8 +57,6 @@ public class adminLoginController {
 
             Document query = new Document("username", userName);
             Document data = collection.find(query).first();
-//            System.out.println("username: " + data.get("username"));
-//            System.out.println("password: " + data.get("password"));
 
             if (data != null) {
                 String storedPasswordHash = data.getString("password");
@@ -77,7 +75,7 @@ public class adminLoginController {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Login Error");
                 alert.setHeaderText(null);
-                alert.setContentText("Error");
+                alert.setContentText("Invalid username or password! Please try again.");
                 alert.showAndWait();
             }
         }

@@ -7,6 +7,10 @@ module com.infrareddeliverysystem {
     requires org.mongodb.driver.core;
     requires jbcrypt;
     requires java.net.http;
+    requires telegrambots.meta;
+    requires telegrambots;
+    requires java.logging;
+//    requires jdk.unsupported.desktop;
 
 
     opens com.infrareddeliverysystem.controllers to javafx.fxml;

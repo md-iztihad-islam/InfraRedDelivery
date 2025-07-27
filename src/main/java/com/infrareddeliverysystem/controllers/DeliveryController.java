@@ -73,7 +73,6 @@ public class DeliveryController {
             return;
         }
 
-//        System.out.println("Fetched Parcel Details: " + parcelDetails.toJson());
 
         String deliveryManIdStr = parcelDetails.getString("deliveryManId");
         ObjectId deliveryManId = new ObjectId(deliveryManIdStr);

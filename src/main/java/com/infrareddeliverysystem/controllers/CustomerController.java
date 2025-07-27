@@ -14,7 +14,6 @@ import java.io.IOException;
 
 public class CustomerController {
 
-
     private Stage stage;
     private Scene scene;
     private Parent root;

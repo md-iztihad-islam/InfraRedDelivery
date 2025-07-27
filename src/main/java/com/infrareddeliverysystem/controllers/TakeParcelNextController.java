@@ -113,47 +113,27 @@ public class TakeParcelNextController {
 
         Document dmDoc = men.find(Filters.eq("_id", dmId)).first();
         String deliveryManName;
+        String deliveryManPhone;
         if (dmDoc != null && dmDoc.getString("name") != null) {
             deliveryManName = dmDoc.getString("name");
+            deliveryManPhone = dmDoc.getString("phone");
         } else {
             deliveryManName = "Unknown";
+            deliveryManPhone = "Unknown";
         }
 
         try {
             String message = String.format(
-                    "Your parcel %s has been assigned to %s. ETA: %s.",
+                    "Your parcel %s has been assigned to %s. %s's phone number: %s\n" + "Estimated Delivery Date: %s.\n" + "Thank you for using our service!\n" + "InfraRed Delivery",
                     parcelId.toHexString(),
                     deliveryManName,
+                    deliveryManName,
+                    deliveryManPhone,
                     parcel.getEstimatedDeliveryDate()
             );
 
-            String apiKey = "1B2DvxXzsprXTkUQEsEr";
-            String senderId = "8809617611758";
-            String phoneNumber = parcel.getReceiverPhone();
-
-            String formData = String.format(
-                    "api_key=%s&type=text&number=%s&senderid=%s&message=%s",
-                    URLEncoder.encode(apiKey, StandardCharsets.UTF_8),
-                    URLEncoder.encode(phoneNumber, StandardCharsets.UTF_8),
-                    URLEncoder.encode(senderId, StandardCharsets.UTF_8),
-                    URLEncoder.encode(message, StandardCharsets.UTF_8)
-            );
-
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://bulksmsbd.net/api/smsapi"))
-                    .header("Content-Type", "application/x-www-form-urlencoded")
-                    .POST(HttpRequest.BodyPublishers.ofString(formData))
-                    .timeout(Duration.ofSeconds(10))
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-//            System.out.println("SMS API Response: " + response.body());
-
-            if (response.statusCode() != 200) {
-                System.err.println("SMS sending failed with status: " + response.statusCode());
-            }
+            // SMS sending code using HttpClient
+            sendSMS(message, parcel.getReceiverPhone());
 
         } catch (Exception e) {
             System.err.println("Failed to send SMS: " + e.getMessage());
@@ -170,6 +150,30 @@ public class TakeParcelNextController {
         alert.setHeaderText("Success");
         alert.setContentText("Success");
         alert.showAndWait();
+    }
+
+
+    private void sendSMS(String message, String phone) throws IOException, InterruptedException {
+        String apiKey = "1B2DvxXzsprXTkUQEsEr";
+        String senderId = "8809617627284";  // Or your sender ID
+        String messagePhoneNumber = phone; // Replace with actual phone number
+
+        String payload = "api_key=" + URLEncoder.encode(apiKey, StandardCharsets.UTF_8) +
+                "&senderid=" + URLEncoder.encode(senderId, StandardCharsets.UTF_8) +
+                "&number=" + URLEncoder.encode(messagePhoneNumber, StandardCharsets.UTF_8) +
+                "&message=" + URLEncoder.encode(message, StandardCharsets.UTF_8);
+
+        // Create HTTP client
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://bulksmsbd.net/api/smsapi"))
+                .header("Content-Type", "application/x-www-form-urlencoded")
+                .POST(HttpRequest.BodyPublishers.ofString(payload))
+                .build();
+
+        // Send the request and handle the response
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println("SMS Response: " + response.body());
     }
 
     public void switchToOffice(ActionEvent event) throws IOException {
