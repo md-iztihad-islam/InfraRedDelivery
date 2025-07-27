@@ -32,6 +32,7 @@ public class TrackParcelCustomerController implements Initializable {
     private Parent root;
 
     private String parcelID;
+    private String deliveryManId;
 
     @FXML
     private Label parDes;
@@ -71,10 +72,25 @@ public class TrackParcelCustomerController implements Initializable {
             pay.setOnAction(event -> handlePayment());
         }
     }
-
+    @FXML
     private void handleChatRequest() {
-        System.out.println("Chat requested for parcel: " + parcelID);
+        try {
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/welcometochatcustomer.fxml"));
+            Parent welcomeRoot = loader.load();
+
+
+            com.infrareddeliverysystem.controllers.Welcometochatcustomer welcomeController = loader.getController();
+            welcomeController.setIDs(parcelID, deliveryManId);
+
+            Stage stage = (Stage) chat.getScene().getWindow();
+            stage.setScene(new Scene(welcomeRoot));
+            stage.setTitle("Welcome to Chat");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @FXML
     private void handlePayment() {
@@ -125,6 +141,7 @@ public class TrackParcelCustomerController implements Initializable {
     @FXML
     public void setParcelID(String parcelID) {
         this.parcelID = parcelID;
+
 //        System.out.println("Parcel ID set: " + this.parcelID);
         fetchParcelDetails();
     }
@@ -139,10 +156,11 @@ public class TrackParcelCustomerController implements Initializable {
             System.out.println("Parcel not found!");
             return;
         }
-
-//        System.out.println("Fetched Parcel Details: " + parcelDetails.toJson());
-
         String deliveryManIdStr = parcelDetails.getString("deliveryManId");
+        this.deliveryManId = deliveryManIdStr;
+//        System.out.println("Fetched Parcel Details: " + parcelDetails.toJson());
+//
+//        String deliveryManIdStr = parcelDetails.getString("deliveryManId");
         ObjectId deliveryManId = new ObjectId(deliveryManIdStr);
 
         MongoCollection<Document> deliveryManCollection = database.getCollection("DeliveryMan");

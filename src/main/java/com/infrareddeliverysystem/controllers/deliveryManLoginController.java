@@ -58,12 +58,9 @@ public class deliveryManLoginController {
 
             Document query = new Document("username", userName);
             Document data = collection.find(query).first();
-            ObjectId deliveryManId = data.getObjectId("_id");
-
-
-//            System.out.print("Querying for user: " + deliveryManId.toString());
 
             if (data != null) {
+                ObjectId deliveryManId = data.getObjectId("_id");
                 String storedPasswordHash = data.getString("password");
 
                 if (DeliveryMan.checkPassword(password, storedPasswordHash)) {
@@ -79,18 +76,23 @@ public class deliveryManLoginController {
                     DeliveryListController deliveryListController = fxmlLoader.getController();
                     deliveryListController.setDeliveryManId(deliveryManId);
 
-
                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     scene = new Scene(root);
                     stage.setScene(scene);
                     stage.setTitle("Delivery Man Page");
                     stage.show();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Login Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Incorrect password.");
+                    alert.showAndWait();
                 }
             } else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Login Error");
                 alert.setHeaderText(null);
-                alert.setContentText("Error");
+                alert.setContentText("Username not found.");
                 alert.showAndWait();
             }
         }

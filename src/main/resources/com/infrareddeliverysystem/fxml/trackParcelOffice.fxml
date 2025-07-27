@@ -43,10 +43,22 @@
                 <Label layoutX="269.0" layoutY="395.0" styleClass="track-step-label" text="Delivery Man Assigned" />
                 <Label layoutX="465.0" layoutY="394.0" styleClass="track-step-label" text="On Your Way!" />
                 <Label layoutX="619.0" layoutY="394.0" styleClass="track-step-label" text="Delivered" />
-                <Button fx:id="setStatus" layoutX="81.0" layoutY="419.0" mnemonicParsing="false" onAction="#atOurWareHouse" styleClass="setStatus" stylesheets="@style.css" text="Set Status" />
-                <Button fx:id="setStatus" layoutX="269.0" layoutY="417.0" mnemonicParsing="false" onAction="#deliveryManAssigned" styleClass="setStatus" stylesheets="@style.css" text="Set Status" />
-                <Button fx:id="setStatus" layoutX="441.0" layoutY="416.0" mnemonicParsing="false" onAction="#onYourWay" styleClass="setStatus" stylesheets="@style.css" text="Set Status" />
-                <Button fx:id="setStatus" layoutX="598.0" layoutY="416.0" mnemonicParsing="false" onAction="#delivered" styleClass="setStatus" stylesheets="@style.css" text="Set Status" />
+                <Button fx:id="setStatus" layoutX="84.0" layoutY="418.0" mnemonicParsing="false" onAction="#atOurWareHouse" styleClass="setStatus" stylesheets="@style.css" text="Set Status">
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
+                <Button fx:id="setStatus" layoutX="269.0" layoutY="417.0" mnemonicParsing="false" onAction="#deliveryManAssigned" styleClass="setStatus" stylesheets="@style.css" text="Set Status">
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
+                <Button fx:id="setStatus" layoutX="441.0" layoutY="416.0" mnemonicParsing="false" onAction="#onYourWay" styleClass="setStatus" stylesheets="@style.css" text="Set Status">
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
+                <Button fx:id="setStatus" layoutX="598.0" layoutY="416.0" mnemonicParsing="false" onAction="#delivered" styleClass="setStatus" stylesheets="@style.css" text="Set Status">
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
             </children>
         </AnchorPane>
     </children>
