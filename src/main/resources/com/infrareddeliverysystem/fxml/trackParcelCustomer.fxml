@@ -30,7 +30,7 @@
             <Label fx:id="dmNameDelivery" layoutX="302.0" layoutY="91.0" text="Asef Kabir" />
             <Label layoutX="84.0" layoutY="138.0" styleClass="field-label" text="Total Payable Amount" />
             <Label fx:id="total" layoutX="301.0" layoutY="136.0" text="5000" />
-            <Button fx:id="chat" layoutX="420.0" layoutY="88.0" mnemonicParsing="false" stylesheets="@style.css" text="Chat" />
+            <Button fx:id="chat" layoutX="420.0" layoutY="88.0" mnemonicParsing="false" onAction="#handleChatRequest" stylesheets="@style.css" text="Chat" />
             <Label layoutX="84.0" layoutY="181.0" styleClass="field-label" text="Payment Status" />
             <Label fx:id="paymentStatus" layoutX="299.0" layoutY="181.0" text="Unpaid" />
             <Button fx:id="pay" layoutX="419.0" layoutY="175.0" mnemonicParsing="false" onAction="#handlePayment" stylesheets="@style.css" text="Pay" />

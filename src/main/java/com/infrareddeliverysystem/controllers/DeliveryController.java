@@ -28,6 +28,7 @@ public class DeliveryController {
     private String parcelID;
     private Document parcelDetails;
 
+
     @FXML
     private Label senderName;
     @FXML
@@ -61,7 +62,26 @@ public class DeliveryController {
         System.out.println("Parcel ID set: " + this.parcelID);
         fetchParcelDetails();
     }
+    @FXML
 
+    private void handleChatRequestRider(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/welcometochatrider.fxml"));
+            Parent welcomeRoot = loader.load();
+
+            String deliveryManId = parcelDetails.getString("deliveryManId");
+
+            com.infrareddeliverysystem.controllers.Welcometochatrider welcomeController = loader.getController();
+            welcomeController.setIDs(parcelID, deliveryManId);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(welcomeRoot));
+            stage.setTitle("Welcome to Chat");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void fetchParcelDetails() {
         ObjectId id = new ObjectId(parcelID);
         MongoDatabase database = MongodbConnection.getDatabase("MainDB");
