@@ -1,0 +1,25 @@
+.root {
+    -fx-background-color: linear-gradient(to bottom, #f5f7fa, #c3cfe2);
+}
+
+.title-label {
+    -fx-font-size: 38px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #37474f;
+    -fx-background-color: transparent;
+    -fx-effect: dropshadow(gaussian, #b0bec5, 8, 0.5, 0, 2);
+    -fx-padding: 40 0 0 0;
+    -fx-border-radius: 12;
+}
+
+.explore-btn {
+    -fx-background-color: #e57373;
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 30;
+    -fx-padding: 12 40 12 40;
+    -fx-effect: dropshadow(gaussian, #b0bec5, 6, 0.3, 0, 2);
+    -fx-cursor: hand;
+    -fx-translate-y: 30;
+}

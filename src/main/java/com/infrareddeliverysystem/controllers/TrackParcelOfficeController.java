@@ -73,6 +73,7 @@ public class TrackParcelOfficeController implements Initializable {
     }
 
     public void fetchParcelDetails() {
+        System.out.println("Fetching details for: " + parcelID);
         ObjectId id = new ObjectId(parcelID);
         MongoDatabase database = MongodbConnection.getDatabase("MainDB");
         MongoCollection<Document> parcel = database.getCollection("Parcels");

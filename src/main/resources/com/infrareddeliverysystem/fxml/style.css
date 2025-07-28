@@ -437,3 +437,36 @@ AnchorPane > Label:not(#parDes):not(#dmNameDelivery):not(#total):not(#paymentSta
     -fx-border-color: #b3e5fc;
     -fx-border-radius: 8px;
 }
+
+.delivered-label {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ff4081;
+    -fx-effect: dropshadow(gaussian, #ffd700, 20, 0.5, 0, 0);
+}
+.panda-animation {
+    -fx-effect: dropshadow(gaussian, #000, 20, 0.5, 0, 0);
+}
+.root {
+    -fx-background-color: linear-gradient(to bottom, #232526, #414345);
+}
+
+.title-label {
+    -fx-font-size: 38px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ff3c3c;
+    -fx-effect: dropshadow(gaussian, #222, 8, 0.5, 0, 2);
+    -fx-padding: 40 0 0 0;
+}
+
+.explore-btn {
+    -fx-background-color: #ff3c3c;
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 30;
+    -fx-padding: 12 40 12 40;
+    -fx-effect: dropshadow(gaussian, #222, 6, 0.3, 0, 2);
+    -fx-cursor: hand;
+    -fx-translate-y: 30;
+}

@@ -18,6 +18,9 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import org.bson.Document;
 import org.bson.types.ObjectId;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
 
 import java.awt.*;
 import java.io.IOException;
@@ -30,10 +33,12 @@ public class TrackParcelCustomerController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
-
+    private Timeline refreshTimeline;
     private String parcelID;
     private String deliveryManId;
-
+    private boolean deliveredAnimationPlayed = false;
+    @FXML private javafx.scene.image.ImageView pandaImage;
+    @FXML private Label deliveredLabel;
     @FXML
     private Label parDes;
     @FXML
@@ -71,6 +76,16 @@ public class TrackParcelCustomerController implements Initializable {
         if (pay != null) {
             pay.setOnAction(event -> handlePayment());
         }
+        refreshTimeline = new Timeline(
+                new KeyFrame(Duration.seconds(1), e -> {
+                    if (parcelID != null) fetchParcelDetails();
+                })
+        );
+        refreshTimeline.setCycleCount(Timeline.INDEFINITE);
+        refreshTimeline.play();
+    }
+    public void stopPolling() {
+        if (refreshTimeline != null) refreshTimeline.stop();
     }
     @FXML
     private void handleChatRequest() {
@@ -118,6 +133,84 @@ public class TrackParcelCustomerController implements Initializable {
         }
     }
 
+
+    private void playDeliveredAnimation() {
+        if (deliveredAnimationPlayed) return;
+        deliveredAnimationPlayed = true;
+
+        pandaImage.setVisible(true);
+        pandaImage.setOpacity(0);
+        pandaImage.setScaleX(1.2);
+        pandaImage.setScaleY(1.2);
+        pandaImage.setTranslateY(200);
+
+        deliveredLabel.setVisible(false);
+        deliveredLabel.setOpacity(0);
+        deliveredLabel.setScaleX(1.0);
+        deliveredLabel.setScaleY(1.0);
+
+        // Panda pops up with gentle bounce and fade in
+        javafx.animation.FadeTransition pandaFadeIn = new javafx.animation.FadeTransition(javafx.util.Duration.millis(900), pandaImage);
+        pandaFadeIn.setFromValue(0);
+        pandaFadeIn.setToValue(1);
+
+        javafx.animation.TranslateTransition pandaUp = new javafx.animation.TranslateTransition(javafx.util.Duration.millis(1200), pandaImage);
+        pandaUp.setFromY(200);
+        pandaUp.setToY(0);
+        pandaUp.setInterpolator(javafx.animation.Interpolator.EASE_OUT);
+
+        javafx.animation.ScaleTransition pandaBounce = new javafx.animation.ScaleTransition(javafx.util.Duration.millis(700), pandaImage);
+        pandaBounce.setFromX(1.2); pandaBounce.setFromY(1.2);
+        pandaBounce.setToX(1.0); pandaBounce.setToY(1.0);
+        pandaBounce.setAutoReverse(true);
+        pandaBounce.setCycleCount(2);
+
+        // Label appears after panda, just fade in and shake
+        javafx.animation.PauseTransition labelDelay = new javafx.animation.PauseTransition(javafx.util.Duration.millis(1000));
+        javafx.animation.FadeTransition labelFadeIn = new javafx.animation.FadeTransition(javafx.util.Duration.millis(500), deliveredLabel);
+        labelFadeIn.setFromValue(0);
+        labelFadeIn.setToValue(1);
+
+        javafx.animation.RotateTransition labelShake = new javafx.animation.RotateTransition(javafx.util.Duration.millis(700), deliveredLabel);
+        labelShake.setFromAngle(-10); labelShake.setToAngle(10);
+        labelShake.setCycleCount(4); labelShake.setAutoReverse(true);
+
+        // Both stay visible for a while
+        javafx.animation.PauseTransition hold = new javafx.animation.PauseTransition(javafx.util.Duration.seconds(2));
+
+        // Fade out both
+        javafx.animation.FadeTransition pandaFadeOut = new javafx.animation.FadeTransition(javafx.util.Duration.millis(800), pandaImage);
+        pandaFadeOut.setFromValue(1);
+        pandaFadeOut.setToValue(0);
+
+        javafx.animation.FadeTransition labelFadeOut = new javafx.animation.FadeTransition(javafx.util.Duration.millis(800), deliveredLabel);
+        labelFadeOut.setFromValue(1);
+        labelFadeOut.setToValue(0);
+
+        javafx.animation.SequentialTransition seq = new javafx.animation.SequentialTransition(
+                new javafx.animation.ParallelTransition(pandaFadeIn, pandaUp, pandaBounce),
+                labelDelay,
+                new javafx.animation.ParallelTransition(labelFadeIn, labelShake),
+                hold,
+                new javafx.animation.ParallelTransition(pandaFadeOut, labelFadeOut)
+        );
+
+        seq.setOnFinished(e -> {
+            deliveredLabel.setVisible(false);
+            deliveredLabel.setOpacity(1.0);
+            deliveredLabel.setRotate(0);
+            deliveredLabel.setScaleX(1.0);
+            deliveredLabel.setScaleY(1.0);
+            pandaImage.setVisible(false);
+            pandaImage.setOpacity(1.0);
+            pandaImage.setScaleX(1.0);
+            pandaImage.setScaleY(1.0);
+            pandaImage.setTranslateY(0);
+        });
+
+        deliveredLabel.setVisible(true);
+        seq.play();
+    }
     private void openPaymentGateway(String url) {
         try {
             if (Desktop.isDesktopSupported()) {
@@ -197,6 +290,7 @@ public class TrackParcelCustomerController implements Initializable {
 
         boolean isDelivered = parcelDetails.getBoolean("isDelivered", false);
         if (isDelivered) {
+            playDeliveredAnimation();
             atOurWareHouse.getStyleClass().add("active-circle");
             deliveryManAssigned.getStyleClass().add("active-circle");
             onYourWay.getStyleClass().add("active-circle");
