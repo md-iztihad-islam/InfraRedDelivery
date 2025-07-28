@@ -14,7 +14,7 @@
     -fx-font-size: 18px;
     -fx-font-family: "Segoe UI", "Arial", sans-serif;
     -fx-font-weight: bold;
-    -fx-text-fill: #263238; /* dark blue-grey */
+    -fx-text-fill: #263238;
     /*-fx-background-color: rgba(255, 255, 255, 0.85);*/
     /*-fx-background-radius: 12px;*/
     -fx-padding: 20 40;
@@ -26,13 +26,13 @@
 }
 
 #top_bar {
-    /*need a bg color that goes well with #1a237e*/
 
-    /* light yellow */
+
+
     -fx-padding: 10 20;
-    -fx-border-color: #64b5f6; /* border color */
-    /*-fx-border-width: 2px; !* border width *!*/
-    /*-fx-border-radius: 8px; !* rounded corners *!*/
+    -fx-border-color: #64b5f6;
+
+
     -fx-effect: dropshadow(gaussian, #b3e5fc, 8, 0.2, 0, 2); /* shadow effect */
 }
 
@@ -84,8 +84,8 @@
 
 #adminLoginLabel {
 
-    -fx-background-color: #87CEEB; /* Sky blue */
-    -fx-text-fill: #1a237e; /* Deep blue for contrast */
+    -fx-background-color: #87CEEB;
+    -fx-text-fill: #1a237e;
     -fx-font-size: 18px;
     -fx-font-family: "Segoe UI", "Arial", sans-serif;
     -fx-font-weight: bold;
@@ -134,7 +134,7 @@
 }
 
 #chat:pressed, #pay:pressed {
-    -fx-background-color: #388E3C; /* Darker green when pressed */
+    -fx-background-color: #388E3C;
     -fx-effect: dropshadow(gaussian, rgba(56,142,60,0.5), 6, 0.2, 0, 1);
     -fx-scale-x: 0.98;
     -fx-scale-y: 0.98;
@@ -222,8 +222,8 @@
 }
 
 #deliveryManLoginLabel {
-    -fx-background-color: #87CEEB; /* Sky blue */
-    -fx-text-fill: #1a237e; /* Deep blue for contrast */
+    -fx-background-color: #87CEEB;
+    -fx-text-fill: #1a237e;
     -fx-font-size: 18px;
     -fx-font-family: "Segoe UI", "Arial", sans-serif;
     -fx-font-weight: bold;
@@ -242,7 +242,7 @@ AnchorPane > Label:not(#parDes):not(#dmNameDelivery):not(#total):not(#paymentSta
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 1, 0, 0, 1);
 }
 
-/* Data value styling - for the actual information */
+
 #parDes, #dmNameDelivery, #total, #paymentStatus, #deliveryDateParcel {
     -fx-font-family: "Segoe UI", "Arial", sans-serif;
     -fx-font-size: 15px;
@@ -255,7 +255,7 @@ AnchorPane > Label:not(#parDes):not(#dmNameDelivery):not(#total):not(#paymentSta
     -fx-border-width: 0 0 1 0;
 }
 
-/* Special styling for payment status */
+
 #paymentStatus {
     -fx-background-color: #FFF8E1;
     -fx-text-fill: #F57C00;
@@ -267,7 +267,7 @@ AnchorPane > Label:not(#parDes):not(#dmNameDelivery):not(#total):not(#paymentSta
     -fx-border-width: 1px;
 }
 
-/* Tracking status labels */
+
 .track-step-label {
     -fx-font-family: "Segoe UI", "Arial", sans-serif;
     -fx-font-size: 12px;
@@ -276,7 +276,7 @@ AnchorPane > Label:not(#parDes):not(#dmNameDelivery):not(#total):not(#paymentSta
     -fx-padding: 2 0;
 }
 
-/* Page title styling (if needed) */
+
 #trackingTitle {
     -fx-font-family: "Segoe UI", "Arial", sans-serif;
     -fx-font-size: 20px;
@@ -286,7 +286,7 @@ AnchorPane > Label:not(#parDes):not(#dmNameDelivery):not(#total):not(#paymentSta
     -fx-padding: 0 0 15 0;
 }
 
-/* Progress bar styling enhancement */
+
 #progressBar {
     -fx-accent: #4CAF50;
     -fx-background-color: #E8F5E9;
@@ -294,7 +294,7 @@ AnchorPane > Label:not(#parDes):not(#dmNameDelivery):not(#total):not(#paymentSta
     -fx-padding: 1px;
 }
 
-/* Circle styling enhancement */
+
 #atOurWareHouse, #deliveryManAssigned, #onYourWay, #delivered {
     -fx-stroke: #1976D2;
     -fx-stroke-width: 2px;
@@ -302,15 +302,14 @@ AnchorPane > Label:not(#parDes):not(#dmNameDelivery):not(#total):not(#paymentSta
     -fx-effect: dropshadow(gaussian, rgba(25, 118, 210, 0.2), 3, 0.2, 0, 1);
 }
 
-/* Active circle styling */
+
 .active-circle {
     -fx-fill: #4CAF50 !important;
     -fx-stroke: #388E3C !important;
     -fx-effect: dropshadow(gaussian, rgba(76, 175, 80, 0.4), 5, 0.3, 0, 2) !important;
 }
 
-/* Professional Set Status Button Styling */
-/* Professional Set Status Button Styling */
+
 .setStatus {
     -fx-background-color: #64B5F6; /* Light blue background */
     -fx-background-radius: 4px;
@@ -339,7 +338,7 @@ AnchorPane > Label:not(#parDes):not(#dmNameDelivery):not(#total):not(#paymentSta
     -fx-scale-y: 0.98;
 }
 
-/* Active state for the current status */
+
 .setStatus-active {
     -fx-background-color: #66BB6A; /* Light green for active state */
     -fx-effect: dropshadow(gaussian, rgba(76,175,80,0.4), 5, 0.3, 0, 2);
@@ -447,26 +446,60 @@ AnchorPane > Label:not(#parDes):not(#dmNameDelivery):not(#total):not(#paymentSta
 .panda-animation {
     -fx-effect: dropshadow(gaussian, #000, 20, 0.5, 0, 0);
 }
-.root {
-    -fx-background-color: linear-gradient(to bottom, #232526, #414345);
+/*.root {*/
+/*    -fx-background-color: linear-gradient(to bottom, #232526, #414345);*/
+/*}*/
+
+/*.title-label {*/
+/*    -fx-font-size: 38px;*/
+/*    -fx-font-weight: bold;*/
+/*    -fx-text-fill: #ff3c3c;*/
+/*    -fx-effect: dropshadow(gaussian, #222, 8, 0.5, 0, 2);*/
+/*    -fx-padding: 40 0 0 0;*/
+/*}*/
+
+/*.explore-btn {*/
+/*    -fx-background-color: #ff3c3c;*/
+/*    -fx-text-fill: white;*/
+/*    -fx-font-size: 22px;*/
+/*    -fx-font-weight: bold;*/
+/*    -fx-background-radius: 30;*/
+/*    -fx-padding: 12 40 12 40;*/
+/*    -fx-effect: dropshadow(gaussian, #222, 6, 0.3, 0, 2);*/
+/*    -fx-cursor: hand;*/
+/*    -fx-translate-y: 30;*/
+/*}*/
+
+.list-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #37474f;
+    -fx-background-color: transparent;
+    -fx-padding: 16 0 16 0;
 }
 
-.title-label {
-    -fx-font-size: 38px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #ff3c3c;
-    -fx-effect: dropshadow(gaussian, #222, 8, 0.5, 0, 2);
-    -fx-padding: 40 0 0 0;
+.parcel-list {
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-effect: dropshadow(gaussian, #b0bec5, 8, 0.2, 0, 2);
+    -fx-font-size: 16px;
+    -fx-control-inner-background: #ffffff;
+    -fx-border-color: #b0bec5;
+    -fx-border-width: 1;
 }
 
-.explore-btn {
-    -fx-background-color: #ff3c3c;
-    -fx-text-fill: white;
-    -fx-font-size: 22px;
-    -fx-font-weight: bold;
-    -fx-background-radius: 30;
-    -fx-padding: 12 40 12 40;
-    -fx-effect: dropshadow(gaussian, #222, 6, 0.3, 0, 2);
-    -fx-cursor: hand;
-    -fx-translate-y: 30;
+.list-cell {
+    -fx-background-color: #fff;
+    -fx-background-radius: 12;
+    -fx-padding: 8 16 8 16;
+    -fx-font-size: 15px;
+    -fx-border-color: #b0bec5;
+    -fx-border-width: 0 0 1 0;
+    -fx-effect: dropshadow(gaussian, #b0bec5, 4, 0.1, 0, 1);
+}
+.list-cell:hover {
+    -fx-background-color: #e3f2fd;
+}
+.list-cell:selected {
+    -fx-background-color: #ffe0b2;
 }

@@ -57,7 +57,21 @@ public class DeliveryListController {
         }
         parcelList.setItems(parcelDetailsList);
 
-
+        parcelList.setCellFactory(lv -> {
+            return new javafx.scene.control.ListCell<String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty || item == null) {
+                        setText(null);
+                        setStyle("");
+                    } else {
+                        setText("Parcel ID: " + item);
+                        setStyle("-fx-background-color: #fff; -fx-background-radius: 12; -fx-padding: 8 16 8 16; -fx-font-size: 15px;");
+                    }
+                }
+            };
+        });
         parcelList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             deliveryId = newValue;
 //            System.out.println("Selected Parcel ID: " + deliveryId);
@@ -68,6 +82,7 @@ public class DeliveryListController {
             }
         });
     }
+
 
     public void switchToDelivery(ActionEvent event) throws IOException {
         String deliveryIdString = parcelList.getSelectionModel().getSelectedItem();
@@ -130,6 +145,16 @@ public class DeliveryListController {
     }
 
     public void onStaffButton(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/deliveryManLogin.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Delivery Man Login Page");
+        stage.show();
+    }
+
+    public void onBackButton(ActionEvent event) throws IOException{
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/deliveryManLogin.fxml"));
         root = loader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

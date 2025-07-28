@@ -80,10 +80,10 @@ public class ChatCustomer {
         label.setMaxWidth(400);
 
         if (sentByMe) {
-            hbox.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
+            hbox.setAlignment(javafx.geometry.Pos.CENTER_RIGHT);
             hbox.getChildren().add(label);
         } else {
-            hbox.setAlignment(javafx.geometry.Pos.CENTER_RIGHT);
+            hbox.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
             hbox.getChildren().add(label);
         }
         chatVBox.getChildren().add(hbox);
