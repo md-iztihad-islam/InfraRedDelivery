@@ -27,6 +27,7 @@ public class DeliveryController {
 
     private String parcelID;
     private Document parcelDetails;
+    private ObjectId deliveryManId;
 
 
     @FXML
@@ -95,7 +96,7 @@ public class DeliveryController {
 
 
         String deliveryManIdStr = parcelDetails.getString("deliveryManId");
-        ObjectId deliveryManId = new ObjectId(deliveryManIdStr);
+        deliveryManId = new ObjectId(deliveryManIdStr);
 
         MongoCollection<Document> deliveryManCollection = database.getCollection("DeliveryMan");
         Document deliveryManDetails = deliveryManCollection.find(new Document("_id", deliveryManId)).first();
@@ -127,41 +128,52 @@ public class DeliveryController {
             paymentStatus.setText("Not Paid");
         }
 
+        resetCircleStyling();
+
         boolean isDelivered = parcelDetails.getBoolean("isDelivered", false);
 
         if (isDelivered) {
-            atOurWareHouse.setFill(javafx.scene.paint.Color.GREEN);
-            deliveryManAssigned.setFill(javafx.scene.paint.Color.GREEN);
-            onYourWay.setFill(javafx.scene.paint.Color.GREEN);
-            delivered.setFill(javafx.scene.paint.Color.GREEN);
-            progressBar.setProgress(1);
-        }
-
-        String status = parcelDetails.getString("status");
-
-        if(status.equals("At our Warehouse")) {
-            atOurWareHouse.setFill(javafx.scene.paint.Color.GREEN);
-            progressBar.setProgress(0.25);
-        } else if (status.equals("Delivery Man Assigned")) {
-            atOurWareHouse.setFill(javafx.scene.paint.Color.GREEN);
-            deliveryManAssigned.setFill(javafx.scene.paint.Color.GREEN);
-            progressBar.setProgress(0.50);
-        } else if (status.equals("On the way")) {
-            atOurWareHouse.setFill(javafx.scene.paint.Color.GREEN);
-            deliveryManAssigned.setFill(javafx.scene.paint.Color.GREEN);
-            onYourWay.setFill(javafx.scene.paint.Color.GREEN);
-            progressBar.setProgress(0.75);
-        }else if( status.equals("Delivered")) {
-            atOurWareHouse.setFill(javafx.scene.paint.Color.GREEN);
-            deliveryManAssigned.setFill(javafx.scene.paint.Color.GREEN);
-            onYourWay.setFill(javafx.scene.paint.Color.GREEN);
-            delivered.setFill(javafx.scene.paint.Color.GREEN);
+            atOurWareHouse.getStyleClass().add("active-circle");
+            deliveryManAssigned.getStyleClass().add("active-circle");
+            onYourWay.getStyleClass().add("active-circle");
+            delivered.getStyleClass().add("active-circle");
             progressBar.setProgress(1);
         } else {
-            System.out.println("Unknown status: " + status);
+            String status = parcelDetails.getString("status");
+            updateTrackingStatus(status);
         }
 
+    }
 
+    private void resetCircleStyling() {
+        atOurWareHouse.getStyleClass().removeAll("active-circle");
+        deliveryManAssigned.getStyleClass().removeAll("active-circle");
+        onYourWay.getStyleClass().removeAll("active-circle");
+        delivered.getStyleClass().removeAll("active-circle");
+    }
+
+    private void updateTrackingStatus(String status) {
+        if (status == null) return;
+
+        switch (status) {
+            case "At our Warehouse":
+                atOurWareHouse.getStyleClass().add("active-circle");
+                progressBar.setProgress(0.25);
+                break;
+
+            case "Delivery Man Assigned":
+                atOurWareHouse.getStyleClass().add("active-circle");
+                deliveryManAssigned.getStyleClass().add("active-circle");
+                progressBar.setProgress(0.50);
+                break;
+
+            case "On the way":
+                atOurWareHouse.getStyleClass().add("active-circle");
+                deliveryManAssigned.getStyleClass().add("active-circle");
+                onYourWay.getStyleClass().add("active-circle");
+                progressBar.setProgress(0.75);
+                break;
+        }
     }
 
     private void updateParcelStatus(String status) {
@@ -199,6 +211,20 @@ public class DeliveryController {
         parcelCollection.updateOne(new Document("_id", new ObjectId(parcelID)), updateDoc);
 
         updateParcelStatus("Delivered");
+    }
+
+    public void switchToList(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/infrareddeliverysystem/fxml/deliveryList.fxml"));
+        root = fxmlLoader.load();
+
+        DeliveryListController deliveryListController = fxmlLoader.getController();
+        deliveryListController.setDeliveryManId(deliveryManId);
+
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Delivery Man Page");
+        stage.show();
     }
 
     public void switchToOffice(ActionEvent event) throws IOException {

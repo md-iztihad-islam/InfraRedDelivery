@@ -17,11 +17,6 @@
         </AnchorPane>
         <AnchorPane fx:id="officeBox" layoutX="0.0" layoutY="127.0" prefHeight="473.0" prefWidth="800.0" stylesheets="@style.css">
             <children>
-                <Button fx:id="cost_per_kg" layoutX="342.0" layoutY="322.0" mnemonicParsing="false" stylesheets="@style.css" text="Cost Per Kg">
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </Button>
                 <Button fx:id="take_parcel" layoutX="342.0" layoutY="30.0" mnemonicParsing="false" onAction="#switchToTakeParcel" stylesheets="@style.css" text="Take Parcel">
                     <cursor>
                         <Cursor fx:constant="HAND" />

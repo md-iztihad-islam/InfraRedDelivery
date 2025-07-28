@@ -47,7 +47,7 @@
                 <Label layoutX="245.0" layoutY="314.0" text="Delivery Man Assigned" />
                 <Label layoutX="449.0" layoutY="313.0" text="On Your Way!" />
                 <Label layoutX="628.0" layoutY="312.0" text="Delivered" />
-                <Button fx:id="menuButton" layoutX="706.0" layoutY="405.0" mnemonicParsing="false" onAction="#onHomeButton" text="Back" />
+                <Button fx:id="menuButton" layoutX="706.0" layoutY="405.0" mnemonicParsing="false" onAction="#switchToList" text="Back" />
                 <Button fx:id="setStatusDelivery" layoutX="416.0" layoutY="341.0" mnemonicParsing="false" onAction="#onYourWay" prefHeight="47.0" prefWidth="148.0" text="SET STATUS" />
                 <Button fx:id="setStatusDelivery" layoutX="585.0" layoutY="341.0" mnemonicParsing="false" onAction="#delivered" prefHeight="47.0" prefWidth="148.0" text="SET STATUS" />
                 <Button fx:id="chat" layoutX="251.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleChatRequestRider" text="CHAT" />
