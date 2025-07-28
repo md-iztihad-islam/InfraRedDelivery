@@ -1,9 +1,17 @@
 package com.infrareddeliverysystem.chatbot;
 
+
+import com.google.genai.Client;
+import com.google.genai.types.GenerateContentResponse;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -70,13 +78,13 @@ public class TeleBotServer extends TelegramLongPollingBot {
         } else if(text.equalsIgnoreCase("hello") || text.equalsIgnoreCase("hi")) {
             response.setText("Hello! How can I assist you today? Please type 'help' for a list of commands.");
         } else {
-            response.setText("Invalid Text");
+            response.setText("Sorry, I didn't understand that. Please type 'help' for a list of commands or ask me something else. Or you can call our support team at +8801781032582.");
         }
 
         try {
             execute(response);
         } catch (TelegramApiException e) {
-            logger.log(Level.SEVERE, "Failed to send message to chat " + chatId, e);
+            System.out.println( "Failed to send message to chat " + chatId + e.getMessage());
         }
     }
 
@@ -89,4 +97,5 @@ public class TeleBotServer extends TelegramLongPollingBot {
     public String getBotToken() {
         return botToken;
     }
+
 }

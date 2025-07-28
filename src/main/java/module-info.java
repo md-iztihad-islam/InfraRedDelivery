@@ -10,6 +10,10 @@ module com.infrareddeliverysystem {
     requires telegrambots.meta;
     requires telegrambots;
     requires java.logging;
+    requires org.apache.httpcomponents.httpclient;
+    requires org.apache.httpcomponents.httpcore;
+    requires com.fasterxml.jackson.databind;
+    requires google.genai;
 //    requires jdk.unsupported.desktop;
 
 
