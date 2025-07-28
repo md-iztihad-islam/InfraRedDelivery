@@ -18,5 +18,6 @@
         <TextField fx:id="messageField" layoutX="20" layoutY="500" prefWidth="650" promptText="Type your message..." />
         <Button fx:id="sendButton" layoutX="690" layoutY="500" onAction="#onSend" prefWidth="90" text="Send" />
       <Button fx:id="menuButton" layoutX="365.0" layoutY="552.0" mnemonicParsing="false" onAction="#onBackButton" text="Back" />
+      <Button fx:id="menuButton" layoutX="637.0" layoutY="16.0" mnemonicParsing="false" onAction="#onAudioCall" text="AUDIO CALL" />
     </children>
 </AnchorPane>

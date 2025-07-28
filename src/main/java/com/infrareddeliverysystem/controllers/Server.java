@@ -40,7 +40,6 @@ public class Server {
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 out = new PrintWriter(socket.getOutputStream(), true);
 
-                // First message: identify client
                 String init = in.readLine();
                 if (init == null) return;
 
@@ -64,22 +63,51 @@ public class Server {
 
                 String msg;
                 while ((msg = in.readLine()) != null) {
-                    if (isRider) {
-                        ClientHandler customer = customerMap.get(trackingId);
-                        if (customer != null) {
-                            customer.sendMessage("Rider: " + msg);
+                    if (msg.startsWith("CALL:REQUEST")) {
+                        if (isRider) {
+                            ClientHandler customer = customerMap.get(trackingId);
+                            if (customer != null) customer.sendMessage("CALL:REQUEST");
+                        } else {
+                            ClientHandler rider = riderMap.get(riderId);
+                            if (rider != null) rider.sendMessage("CALL:REQUEST");
+                        }
+                    } else if (msg.startsWith("CALL:ACCEPT")) {
+                        if (isRider) {
+                            ClientHandler customer = customerMap.get(trackingId);
+                            if (customer != null) customer.sendMessage("CALL:ACCEPT");
+                        } else {
+                            ClientHandler rider = riderMap.get(riderId);
+                            if (rider != null) rider.sendMessage("CALL:ACCEPT");
+                        }
+                    } else if (msg.startsWith("CALL:DECLINE")) {
+                        if (isRider) {
+                            ClientHandler customer = customerMap.get(trackingId);
+                            if (customer != null) customer.sendMessage("CALL:DECLINE");
+                        } else {
+                            ClientHandler rider = riderMap.get(riderId);
+                            if (rider != null) rider.sendMessage("CALL:DECLINE");
+                        }
+                    } else if (msg.startsWith("CALL:DISCONNECT")) {
+                        if (isRider) {
+                            ClientHandler customer = customerMap.get(trackingId);
+                            if (customer != null) customer.sendMessage("CALL:DISCONNECT");
+                        } else {
+                            ClientHandler rider = riderMap.get(riderId);
+                            if (rider != null) rider.sendMessage("CALL:DISCONNECT");
                         }
                     } else {
-                        ClientHandler rider = riderMap.get(riderId);
-                        if (rider != null) {
-                            rider.sendMessage("Customer: " + msg);
+                        if (isRider) {
+                            ClientHandler customer = customerMap.get(trackingId);
+                            if (customer != null) customer.sendMessage("Rider: " + msg);
+                        } else {
+                            ClientHandler rider = riderMap.get(riderId);
+                            if (rider != null) rider.sendMessage("Customer: " + msg);
                         }
                     }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                // Clean up
                 if (isRider && riderId != null) riderMap.remove(riderId);
                 if (!isRider && trackingId != null) customerMap.remove(trackingId);
                 try { socket.close(); } catch (IOException ignored) {}
