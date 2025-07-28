@@ -149,7 +149,6 @@ public class TrackParcelCustomerController implements Initializable {
         deliveredLabel.setScaleX(1.0);
         deliveredLabel.setScaleY(1.0);
 
-        // Panda pops up with gentle bounce and fade in
         javafx.animation.FadeTransition pandaFadeIn = new javafx.animation.FadeTransition(javafx.util.Duration.millis(900), pandaImage);
         pandaFadeIn.setFromValue(0);
         pandaFadeIn.setToValue(1);
@@ -165,7 +164,6 @@ public class TrackParcelCustomerController implements Initializable {
         pandaBounce.setAutoReverse(true);
         pandaBounce.setCycleCount(2);
 
-        // Label appears after panda, just fade in and shake
         javafx.animation.PauseTransition labelDelay = new javafx.animation.PauseTransition(javafx.util.Duration.millis(1000));
         javafx.animation.FadeTransition labelFadeIn = new javafx.animation.FadeTransition(javafx.util.Duration.millis(500), deliveredLabel);
         labelFadeIn.setFromValue(0);
@@ -175,10 +173,8 @@ public class TrackParcelCustomerController implements Initializable {
         labelShake.setFromAngle(-10); labelShake.setToAngle(10);
         labelShake.setCycleCount(4); labelShake.setAutoReverse(true);
 
-        // Both stay visible for a while
         javafx.animation.PauseTransition hold = new javafx.animation.PauseTransition(javafx.util.Duration.seconds(2));
 
-        // Fade out both
         javafx.animation.FadeTransition pandaFadeOut = new javafx.animation.FadeTransition(javafx.util.Duration.millis(800), pandaImage);
         pandaFadeOut.setFromValue(1);
         pandaFadeOut.setToValue(0);

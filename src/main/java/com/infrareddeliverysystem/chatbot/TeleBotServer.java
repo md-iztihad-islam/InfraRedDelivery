@@ -1,18 +1,11 @@
 package com.infrareddeliverysystem.chatbot;
 
 
-import com.google.genai.Client;
-import com.google.genai.types.GenerateContentResponse;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class TeleBotServer extends TelegramLongPollingBot {

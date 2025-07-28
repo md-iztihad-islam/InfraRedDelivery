@@ -23,28 +23,10 @@ public class Main extends Application {
         scene.getStylesheets().add(css);
         stage.setTitle("Home Page");
         stage.show();
-
-        startTelegramBot();
     }
 
     public static void main(String[] args) {
         launch();
-    }
-
-    private void startTelegramBot() {
-        Thread botThread = new Thread(() -> {
-            try {
-                TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
-                botsApi.registerBot(new TeleBotServer(
-                        "i_n_f_r_a_r_e_d_bot",
-                        "8410962165:AAGdxwx0hQyOF3tR6ryj_H3w4BJNEKFySIo"
-                ));
-            } catch (TelegramApiException e) {
-                System.out.println("Error starting Telegram Bot: " + e.getMessage());
-            }
-        });
-        botThread.setDaemon(true);
-        botThread.start();
     }
 
 }

@@ -13,8 +13,6 @@ module com.infrareddeliverysystem {
     requires org.apache.httpcomponents.httpclient;
     requires org.apache.httpcomponents.httpcore;
     requires com.fasterxml.jackson.databind;
-    requires google.genai;
-//    requires jdk.unsupported.desktop;
 
 
     opens com.infrareddeliverysystem.controllers to javafx.fxml;

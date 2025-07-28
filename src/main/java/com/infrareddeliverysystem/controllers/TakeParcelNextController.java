@@ -124,7 +124,7 @@ public class TakeParcelNextController {
 
         try {
             String message = String.format(
-                    "Your parcel %s has been assigned to %s. %s's phone number: %s\n" + "Estimated Delivery Date: %s.\n" + "Thank you for using our service!\n" + "InfraRed Delivery",
+                    "Your parcel %s has been assigned to %s. %s's phone number: %s\n" + "Estimated Delivery Date: %s.\n" + "TelegramBot: https://t.me/i_n_f_r_a_r_e_d_bot\n" + "Thank you for using our service!\n" + "InfraRed Delivery",
                     parcelId.toHexString(),
                     deliveryManName,
                     deliveryManName,
@@ -132,8 +132,8 @@ public class TakeParcelNextController {
                     parcel.getEstimatedDeliveryDate()
             );
 
-            // SMS sending code using HttpClient
             sendSMS(message, parcel.getReceiverPhone());
+            sendSMS(message, parcel.getSenderPhone());
 
         } catch (Exception e) {
             System.err.println("Failed to send SMS: " + e.getMessage());
@@ -155,15 +155,14 @@ public class TakeParcelNextController {
 
     private void sendSMS(String message, String phone) throws IOException, InterruptedException {
         String apiKey = "1B2DvxXzsprXTkUQEsEr";
-        String senderId = "8809617627284";  // Or your sender ID
-        String messagePhoneNumber = phone; // Replace with actual phone number
+        String senderId = "8809617627284";
+        String messagePhoneNumber = phone;
 
         String payload = "api_key=" + URLEncoder.encode(apiKey, StandardCharsets.UTF_8) +
                 "&senderid=" + URLEncoder.encode(senderId, StandardCharsets.UTF_8) +
                 "&number=" + URLEncoder.encode(messagePhoneNumber, StandardCharsets.UTF_8) +
                 "&message=" + URLEncoder.encode(message, StandardCharsets.UTF_8);
 
-        // Create HTTP client
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://bulksmsbd.net/api/smsapi"))
@@ -171,7 +170,6 @@ public class TakeParcelNextController {
                 .POST(HttpRequest.BodyPublishers.ofString(payload))
                 .build();
 
-        // Send the request and handle the response
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println("SMS Response: " + response.body());
     }
