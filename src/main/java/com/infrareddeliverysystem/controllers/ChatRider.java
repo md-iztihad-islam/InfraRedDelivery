@@ -64,8 +64,13 @@ public class ChatRider {
     @FXML
     public void onBackButton(ActionEvent event) throws IOException {
         //ekhane add delivery.fxml e niye jais. with appropriate trackingID
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/infrareddeliverysystem/fxml/deliveryManLogin.fxml"));
-         root = loader.load();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/infrareddeliverysystem/fxml/delivery.fxml"));
+        root = loader.load();
+
+        DeliveryController deliveryController = loader.getController();
+        deliveryController.setParcelID(trackingId);
+
+
         stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

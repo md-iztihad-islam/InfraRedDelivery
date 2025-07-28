@@ -93,8 +93,12 @@ public class ChatCustomer {
     public void onBackButton(ActionEvent event) throws IOException{
 
             //ekhane add trackparcel.fxml e niye jais. with appropriate trackingID
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/infrareddeliverysystem/fxml/ParcelIDInput.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/infrareddeliverysystem/fxml/trackParcelCustomer.fxml"));
             root = loader.load();
+
+            TrackParcelCustomerController trackParcelCustomer = loader.getController();
+            trackParcelCustomer.setParcelID(this.trackingId);
+
             stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
